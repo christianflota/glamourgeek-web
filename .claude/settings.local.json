@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp /Users/christianruiz/.claude/projects/-Users-christianruiz-Desktop-Glamour-Geek-GlamourGeek-Claude/e472fd8e-48e0-4c83-b947-afda7f6f9050/tool-results/glamourgeek-web/project/index.html '/Users/christianruiz/Desktop/Glamour Geek/GlamourGeek Claude/')",
+      "Bash(cp /Users/christianruiz/.claude/projects/-Users-christianruiz-Desktop-Glamour-Geek-GlamourGeek-Claude/e472fd8e-48e0-4c83-b947-afda7f6f9050/tool-results/glamourgeek-web/project/styles.css '/Users/christianruiz/Desktop/Glamour Geek/GlamourGeek Claude/')",
+      "Bash(cp /Users/christianruiz/.claude/projects/-Users-christianruiz-Desktop-Glamour-Geek-GlamourGeek-Claude/e472fd8e-48e0-4c83-b947-afda7f6f9050/tool-results/glamourgeek-web/project/data.jsx '/Users/christianruiz/Desktop/Glamour Geek/GlamourGeek Claude/')",
+      "Bash(cp /Users/christianruiz/.claude/projects/-Users-christianruiz-Desktop-Glamour-Geek-GlamourGeek-Claude/e472fd8e-48e0-4c83-b947-afda7f6f9050/tool-results/glamourgeek-web/project/nav-hero.jsx '/Users/christianruiz/Desktop/Glamour Geek/GlamourGeek Claude/')",
+      "Bash(cp /Users/christianruiz/.claude/projects/-Users-christianruiz-Desktop-Glamour-Geek-GlamourGeek-Claude/e472fd8e-48e0-4c83-b947-afda7f6f9050/tool-results/glamourgeek-web/project/services-process.jsx '/Users/christianruiz/Desktop/Glamour Geek/GlamourGeek Claude/')"
+    ]
+  }
+}

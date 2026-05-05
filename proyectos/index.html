@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Proyectos · GlamourGeek</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<link rel="icon" href="../assets/glamourgeek-isotipo.png" />
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="../data.jsx"></script>
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+function PageNav() {
+  return (
+    <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: "20px 0" }}>
+      <div style={{
+        maxWidth: 1320, margin: "0 auto", padding: "12px 28px",
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        background: "rgba(12, 14, 20, 0.72)",
+        backdropFilter: "blur(18px) saturate(140%)",
+        WebkitBackdropFilter: "blur(18px) saturate(140%)",
+        border: "1px solid var(--line)",
+        borderRadius: 999,
+      }}>
+        <a href="../index.html" style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <img src="../assets/glamourgeek-isotipo.png" alt="GlamourGeek" style={{ height: 32 }} />
+          <span className="font-display" style={{ fontSize: 17, fontWeight: 700, letterSpacing: "-0.02em", display: "flex", gap: 4 }}>
+            <span style={{ color: "var(--brand-cyan-bright)" }}>Glamour</span>
+            <span style={{ color: "var(--brand-coral-bright)" }}>Geek</span>
+          </span>
+        </a>
+        <nav style={{ display: "flex", gap: 28, fontSize: 14 }}>
+          <a href="../index.html#servicios" style={{ color: "var(--fg-1)" }}>Servicios</a>
+          <a href="../index.html#ia" style={{ color: "var(--fg-1)" }}>IA</a>
+          <a href="../index.html#proceso" style={{ color: "var(--fg-1)" }}>Proceso</a>
+          <a href="index.html" style={{ color: "var(--accent)" }}>Trabajo</a>
+        </nav>
+        <a href="../index.html#contacto" className="btn btn-primary" style={{ padding: "10px 18px", fontSize: 14 }}>
+          Cotiza tu proyecto
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </header>
+  );
+}
+
+function ProjectsIndex() {
+  const items = window.GG_DATA.portfolio;
+  return (
+    <>
+      <div className="noise" />
+      <PageNav />
+      <main style={{ paddingTop: 160, paddingBottom: 100 }}>
+        <div className="container">
+          <a href="../index.html" style={{ color: "var(--fg-2)", fontFamily: "var(--font-mono)", fontSize: 12, marginBottom: 24, display: "inline-flex", alignItems: "center", gap: 6 }}>
+            ← Volver al inicio
+          </a>
+          <span className="eyebrow" style={{ display: "block", marginTop: 16 }}>/ Portafolio completo</span>
+          <h1 style={{ marginTop: 16, maxWidth: 900 }}>
+            Proyectos que <span style={{
+              background: "linear-gradient(135deg, var(--brand-cyan-bright), var(--brand-coral-bright))",
+              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+            }}>generan resultados</span>.
+          </h1>
+          <p className="body-lg" style={{ marginTop: 24, maxWidth: 600 }}>
+            {items.length} casos de éxito en marketplaces, SaaS, apps móviles, sitios corporativos y plataformas industriales.
+          </p>
+
+          <div style={{
+            marginTop: 80,
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: 16,
+          }} className="all-projects-grid">
+            {items.map((p, i) => {
+              const accent = p.color === "coral" ? "var(--brand-coral-bright)" : "var(--brand-cyan-bright)";
+              const glow = p.color === "coral" ? "rgba(255,107,126,0.3)" : "rgba(77,216,255,0.3)";
+              return (
+                <a key={p.id} href={`detalle.html?id=${p.id}`}
+                  style={{
+                    background: "var(--bg-1)",
+                    border: "1px solid var(--line)",
+                    borderRadius: "var(--r-lg)",
+                    padding: 28,
+                    display: "flex", flexDirection: "column", justifyContent: "space-between",
+                    minHeight: 280, gap: 24,
+                    position: "relative", overflow: "hidden",
+                    transition: "all 240ms",
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = accent; e.currentTarget.style.transform = "translateY(-3px)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--line)"; e.currentTarget.style.transform = ""; }}
+                >
+                  <div style={{ position: "absolute", top: 0, right: 0, width: 200, height: 200, background: `radial-gradient(circle, ${glow}, transparent 70%)`, pointerEvents: "none" }} />
+                  <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                    <span className="pill" style={{ borderColor: accent, color: accent }}>{p.tag}</span>
+                    <span style={{ fontSize: 36 }}>{p.emoji}</span>
+                  </div>
+                  <div style={{ position: "relative", zIndex: 1 }}>
+                    <h3 style={{ fontSize: 22, marginBottom: 8 }}>{p.client}</h3>
+                    <p className="body-sm" style={{ marginBottom: 16, fontSize: 13 }}>{p.desc}</p>
+                    <div style={{ color: accent, fontFamily: "var(--font-mono)", fontSize: 11, display: "flex", alignItems: "center", gap: 6 }}>
+                      Ver caso <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </main>
+      <style>{`
+        @media (max-width: 980px) { .all-projects-grid { grid-template-columns: repeat(2,1fr) !important; } }
+        @media (max-width: 620px) { .all-projects-grid { grid-template-columns: 1fr !important; } }
+      `}</style>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<ProjectsIndex />);
+</script>
+</body>
+</html>
