@@ -43,25 +43,35 @@ window.GGPortfolio = function GGPortfolio() {
                   e.currentTarget.style.transform = "";
                 }}
               >
-                {/* visual */}
+                {/* glow bg */}
                 <div style={{
                   position: "absolute", top: 0, right: 0, width: "55%", height: "100%",
                   background: `radial-gradient(circle at 60% 50%, ${glow}, transparent 60%)`,
                   pointerEvents: "none",
                 }} />
-                {/* placeholder hexagon mockup */}
-                <div style={{ position: "absolute", top: 24, right: 24, opacity: 0.6 }}>
-                  <svg width="120" height="120" viewBox="0 0 100 100">
-                    <defs>
-                      <linearGradient id={`grad-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor={p.color === "coral" ? "#FF6B7E" : "#4DD8FF"} />
-                        <stop offset="100%" stopColor={p.color === "coral" ? "#E85D6F" : "#3DBCE5"} />
-                      </linearGradient>
-                    </defs>
-                    <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" fill="none" stroke={`url(#grad-${i})`} strokeWidth="1.2" />
-                    <polygon points="50,18 78,33 78,67 50,82 22,67 22,33" fill="none" stroke={`url(#grad-${i})`} strokeWidth="1.2" />
-                    <polygon points="50,30 66,40 66,60 50,70 34,60 34,40" fill={`url(#grad-${i})`} opacity="0.4" />
-                  </svg>
+                {/* screenshot thumbnail */}
+                <div style={{
+                  position: "absolute", top: 20, right: 20, width: 160, height: 108,
+                  borderRadius: 8, overflow: "hidden",
+                  border: `1px solid ${accent}44`,
+                  boxShadow: `0 8px 32px ${glow}`,
+                  opacity: 0.85,
+                }}>
+                  <div style={{
+                    height: 18, background: "var(--bg-2)",
+                    display: "flex", alignItems: "center", gap: 4, padding: "0 8px",
+                    borderBottom: "1px solid var(--line)",
+                  }}>
+                    {["#FF5F56","#FFBD2E","#27C93F"].map(c => (
+                      <span key={c} style={{ width: 5, height: 5, borderRadius: "50%", background: c }} />
+                    ))}
+                  </div>
+                  <img
+                    src={`assets/screenshots/${p.id}.jpg`}
+                    alt={p.client}
+                    style={{ width: "100%", height: "calc(100% - 18px)", objectFit: "cover", objectPosition: "top", display: "block" }}
+                    onError={(e) => { e.target.parentElement.style.display = "none"; }}
+                  />
                 </div>
 
                 <div style={{ position: "relative", zIndex: 1 }}>
