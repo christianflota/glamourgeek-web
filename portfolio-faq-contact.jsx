@@ -192,8 +192,9 @@ window.GGMarquee = function GGMarquee() {
 // CONTACT + FOOTER
 // ============================================================
 window.GGContact = function GGContact() {
-  const [form, setForm] = React.useState({ name: "", email: "", phone: "", service: "", msg: "" });
-  const [sent, setSent] = React.useState(false);
+  const EMPTY = { name: "", email: "", phone: "", service: "", msg: "" };
+  const [form, setForm] = React.useState(EMPTY);
+  const [status, setStatus] = React.useState("idle"); // idle | sending | sent | error
 
   return (
     <section id="contacto" style={{ padding: "140px 0 100px", borderTop: "1px solid var(--line)", position: "relative", overflow: "hidden" }}>
@@ -249,7 +250,26 @@ window.GGContact = function GGContact() {
           </div>
 
           <form
-            onSubmit={(e) => { e.preventDefault(); setSent(true); setTimeout(() => setSent(false), 3000); }}
+            onSubmit={(e) => {
+              e.preventDefault();
+              setStatus("sending");
+              window.emailjs.send(
+                "SERVICE_ID",
+                "TEMPLATE_ID",
+                {
+                  from_name: form.name,
+                  from_email: form.email,
+                  whatsapp: form.phone,
+                  service: form.service || "No especificado",
+                  message: form.msg,
+                }
+              ).then(() => {
+                setStatus("sent");
+                setForm(EMPTY);
+              }).catch(() => {
+                setStatus("error");
+              });
+            }}
             style={{
               background: "var(--bg-1)",
               border: "1px solid var(--line)",
@@ -293,9 +313,18 @@ window.GGContact = function GGContact() {
                 onBlur={(e) => e.target.style.borderColor = "var(--line-strong)"}
               />
             </div>
-            <button type="submit" className="btn btn-primary" style={{ justifyContent: "center", marginTop: 4 }}>
-              {sent ? "✓ Enviado, te contactamos pronto" : <>Enviar cotización <GGIcon name="arrow-right" size={16} stroke={2} /></>}
+            <button type="submit" className="btn btn-primary" disabled={status === "sending"} style={{ justifyContent: "center", marginTop: 4, opacity: status === "sending" ? 0.7 : 1 }}>
+              {status === "idle" && <>Enviar cotización <GGIcon name="arrow-right" size={16} stroke={2} /></>}
+              {status === "sending" && "Enviando…"}
+              {status === "sent" && "✓ Enviado, te contactamos pronto"}
+              {status === "error" && "Error al enviar. Intenta de nuevo."}
             </button>
+            {status === "error" && (
+              <button type="button" className="btn btn-ghost" style={{ justifyContent: "center", fontSize: 13 }}
+                onClick={() => setStatus("idle")}>
+                Reintentar
+              </button>
+            )}
           </form>
         </div>
       </div>
