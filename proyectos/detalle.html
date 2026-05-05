@@ -56,8 +56,11 @@ function Nav() {
             <span style={{ color: "var(--brand-coral-bright)" }}>Geek</span>
           </span>
         </a>
-        <a href="index.html" style={{ color: "var(--fg-1)", fontSize: 14, display: "flex", alignItems: "center", gap: 6 }}>← Todos los proyectos</a>
-        <a href="../index.html#contacto" className="btn btn-primary" style={{ padding: "10px 18px", fontSize: 14 }}>Cotiza tu proyecto</a>
+        <a href="index.html" className="det-back" style={{ color: "var(--fg-1)", fontSize: 14, display: "flex", alignItems: "center", gap: 6 }}>← Todos los proyectos</a>
+        <a href="../index.html#contacto" className="btn btn-primary det-cta" style={{ padding: "10px 18px", fontSize: 14 }}>
+          <span className="det-cta-text">Cotiza tu proyecto</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
       </div>
     </header>
   );
@@ -266,6 +269,11 @@ function Detail() {
           .detail-meta > div + div { border-top: 1px solid var(--line) !important; border-left: none !important; padding-top: 24px; margin-top: 12px; }
           .detail-value { grid-template-columns: 1fr !important; gap: 40px !important; }
           .detail-nav { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 640px) {
+          .det-back { display: none !important; }
+          .det-cta-text { display: none; }
+          .det-cta { padding: 10px 14px !important; }
         }
       `}</style>
     </>
