@@ -3,7 +3,26 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Caso · GlamourGeek</title>
+<title>Casos de Éxito | GlamourGeek · Agencia Digital México</title>
+<meta name="description" content="Casos de éxito de GlamourGeek: marketing digital, desarrollo web, apps y automatización con IA para empresas en México." />
+<link rel="canonical" href="https://glamourgeek.com.mx/proyectos/" />
+
+<!-- Open Graph (overridden dynamically per project) -->
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="GlamourGeek" />
+<meta property="og:locale" content="es_MX" />
+<meta property="og:title" content="Casos de Éxito | GlamourGeek" />
+<meta property="og:description" content="Casos de éxito de GlamourGeek: marketing digital, desarrollo web, apps y automatización con IA." />
+<meta property="og:image" content="https://glamourgeek.com.mx/assets/og-glamourgeek.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Casos de Éxito | GlamourGeek" />
+<meta name="twitter:description" content="Casos de éxito de GlamourGeek: marketing digital, desarrollo web, apps y automatización con IA." />
+<meta name="twitter:image" content="https://glamourgeek.com.mx/assets/og-glamourgeek.jpg" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -13,8 +32,8 @@
 <body>
 <div id="root"></div>
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
 <script type="text/babel" src="../data.jsx"></script>
@@ -57,7 +76,46 @@ function Detail() {
   const glow = project.color === "coral" ? "rgba(255,107,126,0.4)" : "rgba(77,216,255,0.4)";
 
   React.useEffect(() => {
-    document.title = `${project.client} · GlamourGeek`;
+    const base = 'https://glamourgeek.com.mx';
+    const url = `${base}/proyectos/detalle.html?id=${project.id}`;
+    const img = `${base}/assets/screenshots/${project.id}.jpg`;
+    const desc = `${project.client} · ${project.tag} — ${project.desc} Caso de éxito de GlamourGeek, agencia digital en México.`;
+
+    document.title = `${project.client} · GlamourGeek | Agencia Digital México`;
+
+    const setMeta = (sel, attr, val) => {
+      let el = document.querySelector(sel);
+      if (!el) { el = document.createElement('meta'); document.head.appendChild(el); }
+      el.setAttribute(attr, val);
+    };
+    const setLink = (rel, href) => {
+      let el = document.querySelector(`link[rel="${rel}"]`);
+      if (!el) { el = document.createElement('link'); el.rel = rel; document.head.appendChild(el); }
+      el.href = href;
+    };
+
+    setMeta('meta[name="description"]', 'content', desc);
+    setLink('canonical', url);
+    setMeta('meta[property="og:title"]', 'content', `${project.client} · GlamourGeek`);
+    setMeta('meta[property="og:description"]', 'content', desc);
+    setMeta('meta[property="og:url"]', 'content', url);
+    setMeta('meta[property="og:image"]', 'content', img);
+    setMeta('meta[name="twitter:title"]', 'content', `${project.client} · GlamourGeek`);
+    setMeta('meta[name="twitter:description"]', 'content', desc);
+    setMeta('meta[name="twitter:image"]', 'content', img);
+
+    const ldJson = {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": project.client,
+      "description": project.longDesc,
+      "url": project.url,
+      "creator": { "@id": "https://glamourgeek.com.mx/#organization" },
+      "keywords": project.services.join(', ')
+    };
+    let ldEl = document.getElementById('ld-project');
+    if (!ldEl) { ldEl = document.createElement('script'); ldEl.id = 'ld-project'; ldEl.type = 'application/ld+json'; document.head.appendChild(ldEl); }
+    ldEl.textContent = JSON.stringify(ldJson);
   }, [project]);
 
   return (
