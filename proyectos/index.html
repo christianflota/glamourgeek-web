@@ -102,9 +102,29 @@ function ProjectsIndex() {
                   onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--line)"; e.currentTarget.style.transform = ""; }}
                 >
                   <div style={{ position: "absolute", top: 0, right: 0, width: 200, height: 200, background: `radial-gradient(circle, ${glow}, transparent 70%)`, pointerEvents: "none" }} />
+                  {/* screenshot thumbnail */}
+                  <div style={{
+                    position: "absolute", top: 16, right: 16, width: 150, height: 100,
+                    borderRadius: 8, overflow: "hidden",
+                    border: `1px solid ${accent}44`,
+                    boxShadow: `0 4px 20px ${glow}`,
+                    opacity: 0.8,
+                  }}>
+                    <div style={{ height: 16, background: "var(--bg-2)", display: "flex", alignItems: "center", gap: 4, padding: "0 6px", borderBottom: "1px solid var(--line)" }}>
+                      {["#FF5F56","#FFBD2E","#27C93F"].map(c => (
+                        <span key={c} style={{ width: 5, height: 5, borderRadius: "50%", background: c }} />
+                      ))}
+                    </div>
+                    <img
+                      src={`../assets/screenshots/${p.id}.jpg`}
+                      alt={p.client}
+                      style={{ width: "100%", height: "calc(100% - 16px)", objectFit: "cover", objectPosition: "top", display: "block" }}
+                      onError={(e) => { e.target.parentElement.style.display = "none"; }}
+                    />
+                  </div>
                   <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                     <span className="pill" style={{ borderColor: accent, color: accent }}>{p.tag}</span>
-                    <span style={{ fontSize: 36 }}>{p.emoji}</span>
+                    <span style={{ fontSize: 36, opacity: 0 }}>{p.emoji}</span>
                   </div>
                   <div style={{ position: "relative", zIndex: 1 }}>
                     <h3 style={{ fontSize: 22, marginBottom: 8 }}>{p.client}</h3>
