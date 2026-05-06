@@ -783,6 +783,13 @@ window.GGIcon = function GGIcon({ name, size = 24, stroke = 1.6 }) {
           <path d="M5 12l5 5L20 7" />
         </svg>
       );
+    case "mail":
+      return (
+        <svg {...props}>
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="M2 7l10 7 10-7" />
+        </svg>
+      );
     default:
       return null;
   }
