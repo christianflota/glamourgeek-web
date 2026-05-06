@@ -1,5 +1,4 @@
 {
-  "cleanUrls": true,
   "rewrites": [
     { "source": "/servicios/ia", "destination": "/servicios/ia.html" },
     { "source": "/servicios/ia/:id", "destination": "/servicios/ia.html" },
@@ -7,20 +6,21 @@
     { "source": "/proyectos/:id", "destination": "/proyectos/detalle.html" }
   ],
   "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
     {
-      "source": "/servicios/detalle",
+      "source": "/servicios/detalle.html",
       "has": [{ "type": "query", "key": "id", "value": "(?<id>.*)" }],
       "destination": "/servicios/:id",
       "permanent": true
     },
     {
-      "source": "/servicios/ia",
+      "source": "/servicios/ia.html",
       "has": [{ "type": "query", "key": "id", "value": "(?<id>.*)" }],
       "destination": "/servicios/ia/:id",
       "permanent": true
     },
     {
-      "source": "/proyectos/detalle",
+      "source": "/proyectos/detalle.html",
       "has": [{ "type": "query", "key": "id", "value": "(?<id>.*)" }],
       "destination": "/proyectos/:id",
       "permanent": true
