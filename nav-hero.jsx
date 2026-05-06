@@ -4,6 +4,7 @@ const { useState: useStateNav, useEffect: useEffectNav } = React;
 window.GGNav = function GGNav({ variant }) {
   const [scrolled, setScrolled] = useStateNav(false);
   const [open, setOpen] = useStateNav(false);
+
   useEffectNav(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
@@ -11,77 +12,149 @@ window.GGNav = function GGNav({ variant }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffectNav(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  const navLinks = [
+    ["Servicios", "#servicios"],
+    ["IA", "#ia"],
+    ["Proceso", "#proceso"],
+    ["Trabajo", "#portafolio"],
+    ["FAQ", "#faq"],
+  ];
+
   return (
-    <header
-      style={{
+    <>
+      <header style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         padding: scrolled ? "10px 0" : "20px 0",
         transition: "padding 240ms ease",
-      }}
-    >
-      <div
-        className="container"
-        style={{
+      }}>
+        <div className="container" style={{
           display: "flex", alignItems: "center", justifyContent: "space-between",
           padding: scrolled ? "10px 24px" : "12px 28px",
-          margin: "0 auto",
-          maxWidth: 1320,
-          background: scrolled ? "rgba(12, 14, 20, 0.72)" : "transparent",
-          backdropFilter: scrolled ? "blur(18px) saturate(140%)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(18px) saturate(140%)" : "none",
-          border: scrolled ? "1px solid var(--line)" : "1px solid transparent",
-          borderRadius: 999,
+          margin: "0 auto", maxWidth: 1320,
+          background: scrolled || open ? "rgba(12, 14, 20, 0.92)" : "transparent",
+          backdropFilter: scrolled || open ? "blur(18px) saturate(140%)" : "none",
+          WebkitBackdropFilter: scrolled || open ? "blur(18px) saturate(140%)" : "none",
+          border: scrolled || open ? "1px solid var(--line)" : "1px solid transparent",
+          borderRadius: open ? 20 : 999,
           transition: "all 240ms ease",
-        }}
-      >
-        <a href="#top" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <img
-            src="assets/glamourgeek-isotipo.png"
-            alt="GlamourGeek"
-            style={{ height: 32, width: "auto" }}
-          />
-          <span
-            className="font-display"
+        }}>
+          {/* Logo */}
+          <a href="#top" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", position: "relative", zIndex: 102 }}>
+            <img src="assets/glamourgeek-isotipo.png" alt="GlamourGeek" style={{ height: 32, width: "auto" }} />
+            <span className="font-display" style={{ fontSize: 17, fontWeight: 700, letterSpacing: "-0.02em", display: "flex", gap: 4 }}>
+              <span style={{ color: "var(--brand-cyan-bright)" }}>Glamour</span>
+              <span style={{ color: "var(--brand-coral-bright)" }}>Geek</span>
+            </span>
+          </a>
+
+          {/* Nav desktop */}
+          <nav style={{ display: "flex", gap: 28, fontSize: 14 }} className="gg-nav-links">
+            {navLinks.map(([label, href]) => (
+              <a key={href} href={href} className="nav-link"
+                style={{ color: "var(--fg-1)", fontWeight: 500, transition: "color 200ms" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-1)")}
+              >{label}</a>
+            ))}
+          </nav>
+
+          {/* CTA desktop */}
+          <a href="#contacto" className="btn btn-primary gg-cta-desktop" style={{ padding: "10px 18px", fontSize: 14 }}>
+            Cotiza tu proyecto
+            <GGIcon name="arrow-right" size={16} stroke={2} />
+          </a>
+
+          {/* Botón hamburguesa — solo mobile */}
+          <button
+            onClick={() => setOpen(!open)}
+            className="gg-hamburger"
+            aria-label={open ? "Cerrar menú" : "Abrir menú"}
             style={{
-              fontSize: 17, fontWeight: 700, letterSpacing: "-0.02em",
-              display: "flex", gap: 4,
+              display: "none",
+              flexDirection: "column", alignItems: "center", justifyContent: "center",
+              width: 44, height: 44, gap: 0,
+              background: "transparent",
+              border: "1px solid var(--line-strong)",
+              borderRadius: 10, cursor: "pointer",
+              position: "relative", zIndex: 102, padding: 0,
             }}
           >
-            <span style={{ color: "var(--brand-cyan-bright)" }}>Glamour</span>
-            <span style={{ color: "var(--brand-coral-bright)" }}>Geek</span>
-          </span>
-        </a>
+            <span style={{
+              display: "block", width: 20, height: 2,
+              background: "var(--fg-0)", borderRadius: 2,
+              transition: "transform 300ms ease",
+              transform: open ? "translateY(7px) rotate(45deg)" : "translateY(-5px)",
+            }} />
+            <span style={{
+              display: "block", width: 20, height: 2,
+              background: "var(--fg-0)", borderRadius: 2,
+              transition: "opacity 300ms ease",
+              opacity: open ? 0 : 1,
+            }} />
+            <span style={{
+              display: "block", width: 20, height: 2,
+              background: "var(--fg-0)", borderRadius: 2,
+              transition: "transform 300ms ease",
+              transform: open ? "translateY(-7px) rotate(-45deg)" : "translateY(5px)",
+            }} />
+          </button>
+        </div>
+      </header>
 
-        <nav style={{ display: "flex", gap: 28, fontSize: 14 }} className="gg-nav-links">
-          {[
-            ["Servicios", "#servicios"],
-            ["IA", "#ia"],
-            ["Proceso", "#proceso"],
-            ["Trabajo", "#portafolio"],
-            ["FAQ", "#faq"],
-          ].map(([label, href]) => (
-            <a key={href} href={href} className="nav-link"
-              style={{ color: "var(--fg-1)", fontWeight: 500, transition: "color 200ms" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-1)")}
-            >
-              {label}
-            </a>
-          ))}
-        </nav>
+      {/* Overlay menú mobile */}
+      <div style={{
+        position: "fixed", inset: 0, zIndex: 99,
+        background: "rgba(7, 8, 12, 0.97)",
+        backdropFilter: "blur(24px)",
+        WebkitBackdropFilter: "blur(24px)",
+        display: "flex", flexDirection: "column",
+        justifyContent: "center", alignItems: "center",
+        gap: 4,
+        opacity: open ? 1 : 0,
+        pointerEvents: open ? "all" : "none",
+        transition: "opacity 320ms ease",
+      }}>
+        {navLinks.map(([label, href], i) => (
+          <a key={href} href={href}
+            onClick={() => setOpen(false)}
+            style={{
+              fontSize: "clamp(36px, 10vw, 60px)", fontWeight: 700,
+              letterSpacing: "-0.03em", color: "var(--fg-0)",
+              textDecoration: "none", fontFamily: "var(--font-display)",
+              lineHeight: 1.2,
+              transition: `color 200ms, transform 340ms ease ${i * 55}ms, opacity 340ms ease ${i * 55}ms`,
+              transform: open ? "translateY(0)" : "translateY(28px)",
+              opacity: open ? 1 : 0,
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-0)")}
+          >{label}</a>
+        ))}
 
-        <a href="#contacto" className="btn btn-primary" style={{ padding: "10px 18px", fontSize: 14 }}>
-          Cotiza tu proyecto
-          <GGIcon name="arrow-right" size={16} stroke={2} />
+        <a href="#contacto" onClick={() => setOpen(false)} className="btn btn-primary"
+          style={{
+            marginTop: 40, padding: "16px 36px", fontSize: 17,
+            transition: `transform 340ms ease ${navLinks.length * 55}ms, opacity 340ms ease ${navLinks.length * 55}ms`,
+            transform: open ? "translateY(0)" : "translateY(28px)",
+            opacity: open ? 1 : 0,
+          }}>
+          Cotiza tu proyecto →
         </a>
       </div>
 
       <style>{`
         @media (max-width: 860px) {
           .gg-nav-links { display: none !important; }
+          .gg-cta-desktop { display: none !important; }
+          .gg-hamburger { display: flex !important; }
         }
       `}</style>
-    </header>
+    </>
   );
 };
 
