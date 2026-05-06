@@ -15,7 +15,7 @@ window.GGPortfolio = function GGPortfolio() {
             const accent = p.color === "coral" ? "var(--brand-coral-bright)" : "var(--brand-cyan-bright)";
             const glow = p.color === "coral" ? "rgba(255,107,126,0.4)" : "rgba(77,216,255,0.4)";
             return (
-              <a key={p.client} href={`proyectos/detalle.html?id=${p.id}`}
+              <a key={p.client} href={`/proyectos/${p.id}`}
                 style={{
                   background: "var(--bg-1)",
                   border: "1px solid var(--line)",

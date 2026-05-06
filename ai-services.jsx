@@ -132,7 +132,7 @@ function FeaturedAICard({ service }) {
   const [hover, setHover] = React.useState(false);
   return (
     <a
-      href={`servicios/ia.html?id=${service.id}`}
+      href={`/servicios/ia/${service.id}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
@@ -231,7 +231,7 @@ function FeaturedAICard({ service }) {
 function AICard({ service, active, onHover, large }) {
   return (
     <a
-      href={`servicios/ia.html?id=${service.id}`}
+      href={`/servicios/ia/${service.id}`}
       onMouseEnter={onHover}
       style={{
         position: "relative",

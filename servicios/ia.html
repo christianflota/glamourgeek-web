@@ -71,14 +71,18 @@ function PageNav() {
 }
 
 function AIServicePage() {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get("id");
+  let id = new URLSearchParams(window.location.search).get("id");
+  if (!id) {
+    const parts = window.location.pathname.split("/").filter(Boolean);
+    id = parts[parts.length - 1];
+    if (id === "ia") id = null;
+  }
   const service = window.GG_DATA.aiServices.find(s => s.id === id);
 
   useEffect(() => {
     if (!service) return;
     const base = "https://glamourgeek.com.mx";
-    const url = `${base}/servicios/ia.html?id=${service.id}`;
+    const url = `${base}/servicios/ia/${service.id}`;
 
     document.title = service.metaTitle;
 
@@ -114,6 +118,7 @@ function AIServicePage() {
       "description": service.metaDesc,
       "url": url,
       "provider": { "@type": "Organization", "@id": "https://glamourgeek.com.mx/#organization", "name": "GlamourGeek" },
+
       "areaServed": { "@type": "Country", "name": "México" },
       "serviceType": service.title,
       "category": "Inteligencia Artificial",
@@ -321,7 +326,7 @@ function AIServicePage() {
           <span className="eyebrow" style={{ marginBottom: 40, display: "block" }}>/ Otros servicios de IA</span>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }} className="other-ia-grid">
             {otherServices.map((s) => (
-              <a key={s.id} href={`ia.html?id=${s.id}`}
+              <a key={s.id} href={`/servicios/ia/${s.id}`}
                 style={{
                   background: "var(--bg-1)", border: "1px solid var(--line)",
                   borderRadius: "var(--r-lg)", padding: "28px 24px",
@@ -377,7 +382,7 @@ function PageFooter() {
           {/* Servicios IA */}
           <div>
             <p className="caption" style={{ marginBottom: 16, color: "var(--fg-2)" }}>Servicios IA</p>
-            {[["Automatización","ia.html?id=automation"],["Chatbots","ia.html?id=chatbots"],["CRM con IA","ia.html?id=crm-ia"],["Contenido IA","ia.html?id=content-ia"],["SEO con IA","ia.html?id=seo-ia"],["Analytics IA","ia.html?id=analytics-ia"]].map(([label, href]) => (
+            {[["Automatización","/servicios/ia/automation"],["Chatbots","/servicios/ia/chatbots"],["CRM con IA","/servicios/ia/crm-ai"],["Contenido IA","/servicios/ia/content-ai"],["Consultoría IA","/servicios/ia/consulting-ai"],["API de IA","/servicios/ia/api-ai"]].map(([label, href]) => (
               <a key={label} href={href} style={{ display: "block", marginBottom: 10, color: "var(--fg-1)", textDecoration: "none", fontSize: 14, transition: "color 200ms" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "var(--brand-cyan-bright)")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-1)")}

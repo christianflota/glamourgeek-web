@@ -51,7 +51,7 @@ function ServiceCell({ service, idx, active, onHover }) {
   const row = Math.floor(idx / 3);
   return (
     <a
-      href={`servicios/detalle.html?id=${service.id}`}
+      href={`/servicios/${service.id}`}
       onMouseEnter={onHover}
       style={{
         position: "relative",

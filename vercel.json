@@ -1,0 +1,29 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/servicios/ia", "destination": "/servicios/ia.html" },
+    { "source": "/servicios/ia/:id", "destination": "/servicios/ia.html" },
+    { "source": "/servicios/:id", "destination": "/servicios/detalle.html" },
+    { "source": "/proyectos/:id", "destination": "/proyectos/detalle.html" }
+  ],
+  "redirects": [
+    {
+      "source": "/servicios/detalle",
+      "has": [{ "type": "query", "key": "id", "value": "(?<id>.*)" }],
+      "destination": "/servicios/:id",
+      "permanent": true
+    },
+    {
+      "source": "/servicios/ia",
+      "has": [{ "type": "query", "key": "id", "value": "(?<id>.*)" }],
+      "destination": "/servicios/ia/:id",
+      "permanent": true
+    },
+    {
+      "source": "/proyectos/detalle",
+      "has": [{ "type": "query", "key": "id", "value": "(?<id>.*)" }],
+      "destination": "/proyectos/:id",
+      "permanent": true
+    }
+  ]
+}

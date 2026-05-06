@@ -122,14 +122,18 @@ function PageNav() {
 }
 
 function ServicePage() {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get("id");
+  let id = new URLSearchParams(window.location.search).get("id");
+  if (!id) {
+    const parts = window.location.pathname.split("/").filter(Boolean);
+    id = parts[parts.length - 1];
+    if (id === "detalle") id = null;
+  }
   const service = window.GG_DATA.services.find(s => s.id === id);
 
   useEffect(() => {
     if (!service) return;
     const base = "https://glamourgeek.com.mx";
-    const url = `${base}/servicios/detalle.html?id=${service.id}`;
+    const url = `${base}/servicios/${service.id}`;
 
     document.title = service.metaTitle;
 
@@ -349,7 +353,7 @@ function ServicePage() {
             {otherServices.map((s) => {
               const a2 = s.color === "coral" ? "var(--brand-coral-bright)" : "var(--brand-cyan-bright)";
               return (
-                <a key={s.id} href={`detalle.html?id=${s.id}`}
+                <a key={s.id} href={`/servicios/${s.id}`}
                   style={{
                     background: "var(--bg-1)", border: "1px solid var(--line)",
                     borderRadius: "var(--r-lg)", padding: "28px 24px",
@@ -413,7 +417,7 @@ function PageFooter() {
           {/* Servicios */}
           <div>
             <p className="caption" style={{ marginBottom: 16, color: "var(--fg-2)" }}>Servicios</p>
-            {[["Marketing Digital","detalle.html?id=marketing"],["Desarrollo Web","detalle.html?id=web"],["Apps","detalle.html?id=apps"],["E-Commerce","detalle.html?id=ecommerce"],["SEO","detalle.html?id=seo"],["PPC","detalle.html?id=ppc"]].map(([label, href]) => (
+            {[["Marketing Digital","/servicios/marketing"],["Desarrollo Web","/servicios/web"],["Apps","/servicios/apps"],["E-Commerce","/servicios/ecommerce"],["SEO","/servicios/seo"],["PPC","/servicios/ppc"]].map(([label, href]) => (
               <a key={label} href={href} style={{ display: "block", marginBottom: 10, color: "var(--fg-1)", textDecoration: "none", fontSize: 14, transition: "color 200ms" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-1)")}
