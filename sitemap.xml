@@ -51,6 +51,36 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://glamourgeek.com.mx/servicios/ia.html?id=automation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://glamourgeek.com.mx/servicios/ia.html?id=chatbots</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://glamourgeek.com.mx/servicios/ia.html?id=crm-ai</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://glamourgeek.com.mx/servicios/ia.html?id=content-ai</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://glamourgeek.com.mx/servicios/ia.html?id=consulting-ai</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://glamourgeek.com.mx/servicios/ia.html?id=api-ai</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://glamourgeek.com.mx/proyectos/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

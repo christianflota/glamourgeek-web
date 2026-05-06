@@ -131,7 +131,8 @@ window.GGAIServices = function GGAIServices() {
 function FeaturedAICard({ service }) {
   const [hover, setHover] = React.useState(false);
   return (
-    <div
+    <a
+      href={`servicios/ia.html?id=${service.id}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       style={{
@@ -145,6 +146,7 @@ function FeaturedAICard({ service }) {
         overflow: "hidden",
         transition: "border-color 240ms",
         borderColor: hover ? "var(--brand-cyan-bright)" : "var(--line)",
+        textDecoration: "none", color: "inherit",
       }}
     >
       {/* animated grid bg */}
@@ -217,14 +219,19 @@ function FeaturedAICard({ service }) {
             }}>{b}</span>
           ))}
         </div>
+        <div style={{ marginTop: 20, display: "flex", alignItems: "center", gap: 6, color: "var(--brand-cyan-bright)", fontFamily: "var(--font-mono)", fontSize: 11 }}>
+          Ver servicio
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </div>
       </div>
-    </div>
+    </a>
   );
 }
 
 function AICard({ service, active, onHover, large }) {
   return (
-    <div
+    <a
+      href={`servicios/ia.html?id=${service.id}`}
       onMouseEnter={onHover}
       style={{
         position: "relative",
@@ -237,7 +244,8 @@ function AICard({ service, active, onHover, large }) {
         gap: 20,
         overflow: "hidden",
         transition: "all 240ms",
-        cursor: "default",
+        cursor: "pointer",
+        textDecoration: "none", color: "inherit",
       }}
       className="ai-card"
       onMouseOver={(e) => {
@@ -301,7 +309,11 @@ function AICard({ service, active, onHover, large }) {
         <h3 style={{ fontSize: large ? 24 : 19, marginBottom: 6, letterSpacing: "-0.02em" }}>{service.title}</h3>
         <p className="caption" style={{ color: "var(--brand-coral-bright)", marginBottom: 12, fontStyle: "italic", letterSpacing: 0, textTransform: "none", fontFamily: "var(--font-body)", fontSize: 12 }}>{service.tagline}</p>
         <p className="body-sm" style={{ fontSize: large ? 14 : 13, lineHeight: 1.5 }}>{service.desc}</p>
+        <div style={{ marginTop: 16, display: "flex", alignItems: "center", gap: 6, color: "var(--brand-cyan-bright)", fontFamily: "var(--font-mono)", fontSize: 11 }}>
+          Ver servicio
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </div>
       </div>
-    </div>
+    </a>
   );
 }
