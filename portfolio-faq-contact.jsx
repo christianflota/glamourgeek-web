@@ -5,15 +5,9 @@ window.GGPortfolio = function GGPortfolio() {
   return (
     <section id="portafolio" style={{ padding: "120px 0", borderTop: "1px solid var(--line)" }}>
       <div className="container">
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 64, flexWrap: "wrap", gap: 24 }}>
-          <div>
-            <span className="eyebrow">/ 03 — Trabajo seleccionado</span>
-            <h2 style={{ marginTop: 16 }}>Resultados, no slides.</h2>
-          </div>
-          <a href="proyectos/" className="btn btn-ghost">
-            Ver todos los proyectos
-            <GGIcon name="arrow-up-right" size={16} stroke={2} />
-          </a>
+        <div style={{ marginBottom: 64 }}>
+          <span className="eyebrow">/ 03 — Trabajo seleccionado</span>
+          <h2 style={{ marginTop: 16 }}>Resultados, no slides.</h2>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20 }} className="portfolio-grid">
@@ -95,6 +89,12 @@ window.GGPortfolio = function GGPortfolio() {
               </a>
             );
           })}
+        </div>
+        <div style={{ display: "flex", justifyContent: "center", marginTop: 48 }}>
+          <a href="proyectos/" className="btn btn-ghost">
+            Ver todos los proyectos
+            <GGIcon name="arrow-up-right" size={16} stroke={2} />
+          </a>
         </div>
       </div>
       <style>{`
