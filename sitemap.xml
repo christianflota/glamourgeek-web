@@ -6,6 +6,51 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://glamourgeek.com.mx/servicios/detalle.html?id=marketing</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://glamourgeek.com.mx/servicios/detalle.html?id=software</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://glamourgeek.com.mx/servicios/detalle.html?id=web</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://glamourgeek.com.mx/servicios/detalle.html?id=seo</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://glamourgeek.com.mx/servicios/detalle.html?id=ecommerce</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://glamourgeek.com.mx/servicios/detalle.html?id=apps</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://glamourgeek.com.mx/servicios/detalle.html?id=ppc</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://glamourgeek.com.mx/servicios/detalle.html?id=social</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://glamourgeek.com.mx/servicios/detalle.html?id=video</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://glamourgeek.com.mx/proyectos/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

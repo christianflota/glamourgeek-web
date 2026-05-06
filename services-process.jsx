@@ -33,6 +33,7 @@ window.GGServices = function GGServices({ variant }) {
           {services.map((s, i) => (
             <ServiceCell key={s.id} service={s} idx={i} active={active === i} onHover={() => setActive(i)} />
           ))}
+
         </div>
       </div>
       <style>{`
@@ -49,7 +50,8 @@ function ServiceCell({ service, idx, active, onHover }) {
   const col = idx % 3;
   const row = Math.floor(idx / 3);
   return (
-    <div
+    <a
+      href={`servicios/detalle.html?id=${service.id}`}
       onMouseEnter={onHover}
       style={{
         position: "relative",
@@ -65,6 +67,7 @@ function ServiceCell({ service, idx, active, onHover }) {
         background: active ? "rgba(255,255,255,0.02)" : "transparent",
         cursor: "pointer",
         overflow: "hidden",
+        textDecoration: "none", color: "inherit",
       }}
     >
       {/* hover glow */}
@@ -103,8 +106,12 @@ function ServiceCell({ service, idx, active, onHover }) {
             </li>
           ))}
         </ul>
+        <div style={{ marginTop: 24, display: "flex", alignItems: "center", gap: 6, color: accentVar, fontFamily: "var(--font-mono)", fontSize: 11, opacity: active ? 1 : 0, transition: "opacity 320ms" }}>
+          Ver servicio
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </div>
       </div>
-    </div>
+    </a>
   );
 }
 
