@@ -430,7 +430,7 @@ window.GGFooter = function GGFooter() {
             ["SEO",               "/servicios/seo"],
             ["Campañas PPC",      "/servicios/ppc"],
             ["Redes Sociales",    "/servicios/social"],
-            ["Agencia de IA",     "/servicios/ia"],
+            ["Agencia de IA",     "/#ia"],
           ]} />
           <FooterCol title="Empresa" items={[
             ["Nosotros",  "/nosotros"],

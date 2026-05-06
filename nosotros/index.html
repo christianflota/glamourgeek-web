@@ -213,9 +213,10 @@ function Story() {
             }} />
             <div style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", gap: 28 }}>
               {[
-                { year: "2018", event: "Fundamos GlamourGeek con foco en diseño web y redes sociales." },
-                { year: "2020", event: "Expandimos a desarrollo de software a la medida y apps móviles." },
-                { year: "2022", event: "+80 proyectos entregados. Abrimos operaciones en toda Latinoamérica." },
+                { year: "2015", event: "Fundamos GlamourGeek con foco en diseño web y redes sociales." },
+                { year: "2018", event: "Expandimos a desarrollo de software a la medida y apps móviles." },
+                { year: "2020", event: "+60 proyectos entregados. Crecemos a clientes en toda Latinoamérica." },
+                { year: "2022", event: "+80 proyectos. Nos consolidamos como agencia integral: marketing + tech." },
                 { year: "2024", event: "Lanzamos nuestra división de Agencia de IA — automatización con GPT, n8n y Make." },
                 { year: "2026", event: "+120 proyectos. Seguimos construyendo el internet de nuestros clientes." },
               ].map(({ year, event }) => (
@@ -390,7 +391,7 @@ function PageFooter() {
               ["/servicios/ecommerce","E-Commerce"],
               ["/servicios/seo","SEO"],
               ["/servicios/ppc","Campañas PPC"],
-              ["/servicios/ia","Agencia de IA"],
+              ["/#ia","Agencia de IA"],
             ].map(([href, label]) => (
               <a key={label} href={href} style={{ display: "block", marginBottom: 10, color: "var(--fg-1)", textDecoration: "none", fontSize: 14, transition: "color 200ms" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
