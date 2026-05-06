@@ -200,7 +200,7 @@ window.GGHero = function GGHero({ variant }) {
         </div>
 
         {/* stats strip */}
-        <div style={{
+        <div className="stats-grid" style={{
           marginTop: 100,
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
@@ -209,7 +209,7 @@ window.GGHero = function GGHero({ variant }) {
           borderBottom: "1px solid var(--line)",
         }}>
           {window.GG_DATA.stats.map((s, i) => (
-            <div key={s.label} style={{
+            <div key={s.label} className={`stat-cell stat-cell-${i}`} style={{
               padding: "28px 24px",
               borderRight: i < 3 ? "1px solid var(--line)" : "none",
               textAlign: "center",
@@ -225,6 +225,14 @@ window.GGHero = function GGHero({ variant }) {
             </div>
           ))}
         </div>
+        <style>{`
+          @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .stat-cell-1 { border-right: none !important; }
+            .stat-cell-2 { border-top: 1px solid var(--line); border-right: 1px solid var(--line) !important; }
+            .stat-cell-3 { border-top: 1px solid var(--line); border-right: none !important; }
+          }
+        `}</style>
       </div>
 
       <style>{`
