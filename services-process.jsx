@@ -106,7 +106,7 @@ function ServiceCell({ service, idx, active, onHover }) {
             </li>
           ))}
         </ul>
-        <div style={{ marginTop: 24, display: "flex", alignItems: "center", gap: 6, color: accentVar, fontFamily: "var(--font-mono)", fontSize: 11, opacity: active ? 1 : 0, transition: "opacity 320ms" }}>
+        <div style={{ marginTop: 24, display: "flex", alignItems: "center", gap: 6, color: accentVar, fontFamily: "var(--font-mono)", fontSize: 11 }}>
           Ver servicio
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
         </div>
