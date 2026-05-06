@@ -1,13 +1,13 @@
 {
   "rewrites": [
     { "source": "/nosotros", "destination": "/nosotros/index.html" },
-    { "source": "/servicios/ia", "destination": "/servicios/ia.html" },
     { "source": "/servicios/ia/:id", "destination": "/servicios/ia.html" },
     { "source": "/servicios/:id", "destination": "/servicios/detalle.html" },
     { "source": "/proyectos/:id", "destination": "/proyectos/detalle.html" }
   ],
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/servicios/ia", "destination": "/#ia", "permanent": false },
     {
       "source": "/servicios/detalle.html",
       "has": [{ "type": "query", "key": "id", "value": "(?<id>.*)" }],
