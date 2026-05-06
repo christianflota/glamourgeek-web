@@ -170,7 +170,7 @@ window.GGMarquee = function GGMarquee() {
   const items = ["Marketing Digital", "Desarrollo Web", "Apps iOS + Android", "E-Commerce", "SEO", "Campañas PPC", "Foto y Video", "Redes Sociales"];
   return (
     <section style={{ padding: "60px 0", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)", overflow: "hidden" }}>
-      <div style={{ display: "flex", whiteSpace: "nowrap", gap: 48, animation: "marquee 40s linear infinite" }}>
+      <div style={{ display: "flex", whiteSpace: "nowrap", gap: 48, animation: "marquee 18s linear infinite" }}>
         {[...items, ...items, ...items].map((it, i) => (
           <div key={i} style={{ display: "flex", alignItems: "center", gap: 48, flexShrink: 0 }}>
             <span className="font-display" style={{
