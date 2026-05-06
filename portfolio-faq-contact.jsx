@@ -192,9 +192,25 @@ window.GGMarquee = function GGMarquee() {
 // CONTACT + FOOTER
 // ============================================================
 window.GGContact = function GGContact() {
-  const EMPTY = { name: "", email: "", phone: "", service: "", msg: "" };
+  const EMPTY = { name: "", email: "", phone: "", services: [], msg: "" };
   const [form, setForm] = React.useState(EMPTY);
   const [status, setStatus] = React.useState("idle"); // idle | sending | sent | error
+
+  const ALL_SERVICES = [
+    "Marketing Digital", "Desarrollo Web", "Desarrollo de Software",
+    "Apps iOS/Android", "E-Commerce", "SEO", "Campañas PPC",
+    "Redes Sociales", "Foto y Video", "Automatización con IA",
+    "Chatbots IA", "CRM con IA", "Contenido con IA", "Consultoría IA", "Otro",
+  ];
+
+  function toggleService(s) {
+    setForm((prev) => ({
+      ...prev,
+      services: prev.services.includes(s)
+        ? prev.services.filter((x) => x !== s)
+        : [...prev.services, s],
+    }));
+  }
 
   return (
     <section id="contacto" style={{ padding: "140px 0 100px", borderTop: "1px solid var(--line)", position: "relative", overflow: "hidden" }}>
@@ -218,7 +234,7 @@ window.GGContact = function GGContact() {
               Cuéntanos qué necesitas y te respondemos en menos de 24 horas con un primer estimado.
             </p>
             <div style={{ marginTop: 48, display: "flex", flexDirection: "column", gap: 20 }}>
-              <a href="tel:9982416655" style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <a href="https://wa.me/529982416655" target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: 16, textDecoration: "none", color: "inherit" }}>
                 <span style={{
                   width: 44, height: 44, borderRadius: "50%",
                   border: "1px solid var(--line-strong)",
@@ -228,24 +244,48 @@ window.GGContact = function GGContact() {
                   <GGIcon name="whatsapp" size={20} />
                 </span>
                 <div>
-                  <div className="caption">Llámanos / WhatsApp</div>
-                  <div className="font-display" style={{ fontSize: 20 }}>(998) 241 6655</div>
+                  <div className="caption">WhatsApp</div>
+                  <div className="font-display" style={{ fontSize: 20 }}>+52 998 241 6655</div>
                 </div>
               </a>
-              <a href="https://www.glamourgeek.com.mx" style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <a href="mailto:hola@glamourgeek.com.mx" style={{ display: "flex", alignItems: "center", gap: 16, textDecoration: "none", color: "inherit" }}>
                 <span style={{
                   width: 44, height: 44, borderRadius: "50%",
                   border: "1px solid var(--line-strong)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   color: "var(--accent-2)",
                 }}>
-                  <GGIcon name="globe" size={20} />
+                  <GGIcon name="mail" size={20} />
                 </span>
                 <div>
-                  <div className="caption">Visítanos</div>
-                  <div className="font-display" style={{ fontSize: 20 }}>www.glamourgeek.com.mx</div>
+                  <div className="caption">Email</div>
+                  <div className="font-display" style={{ fontSize: 20 }}>hola@glamourgeek.com.mx</div>
                 </div>
               </a>
+              <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                <a href="https://www.instagram.com/glamourgeekmx/" target="_blank" rel="noopener noreferrer" style={{
+                  width: 44, height: 44, borderRadius: "50%",
+                  border: "1px solid var(--line-strong)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  color: "var(--fg-1)", transition: "all 200ms", textDecoration: "none",
+                }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--line-strong)"; e.currentTarget.style.color = "var(--fg-1)"; }}
+                >
+                  <GGIcon name="instagram" size={18} />
+                </a>
+                <a href="https://www.facebook.com/GlamourGeekMX/" target="_blank" rel="noopener noreferrer" style={{
+                  width: 44, height: 44, borderRadius: "50%",
+                  border: "1px solid var(--line-strong)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  color: "var(--fg-1)", transition: "all 200ms", textDecoration: "none",
+                }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--line-strong)"; e.currentTarget.style.color = "var(--fg-1)"; }}
+                >
+                  <GGIcon name="facebook" size={18} />
+                </a>
+              </div>
             </div>
           </div>
 
@@ -260,7 +300,7 @@ window.GGContact = function GGContact() {
                   from_name: form.name,
                   from_email: form.email,
                   whatsapp: form.phone,
-                  service: form.service || "No especificado",
+                  service: form.services.length > 0 ? form.services.join(", ") : "No especificado",
                   message: form.msg,
                 }
               ).then(() => {
@@ -282,19 +322,24 @@ window.GGContact = function GGContact() {
             <Field label="Email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} placeholder="hola@empresa.mx" />
             <Field label="WhatsApp" type="tel" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} placeholder="+52 998 241 6655" />
             <div>
-              <label className="caption" style={{ display: "block", marginBottom: 8 }}>Servicio de interés</label>
+              <label className="caption" style={{ display: "block", marginBottom: 8 }}>
+                Servicios de interés <span style={{ color: "var(--fg-3)", fontWeight: 400 }}>(puedes elegir varios)</span>
+              </label>
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                {["Web", "App", "Marketing", "SEO", "E-Commerce", "IA", "Otro"].map((s) => (
-                  <button type="button" key={s}
-                    onClick={() => setForm({ ...form, service: s })}
-                    style={{
-                      padding: "8px 14px", borderRadius: 999,
-                      border: `1px solid ${form.service === s ? "var(--accent)" : "var(--line-strong)"}`,
-                      color: form.service === s ? "var(--accent)" : "var(--fg-1)",
-                      background: form.service === s ? "var(--accent-glow-soft)" : "transparent",
-                      fontSize: 13, transition: "all 200ms",
-                    }}>{s}</button>
-                ))}
+                {ALL_SERVICES.map((s) => {
+                  const selected = form.services.includes(s);
+                  return (
+                    <button type="button" key={s}
+                      onClick={() => toggleService(s)}
+                      style={{
+                        padding: "7px 13px", borderRadius: 999,
+                        border: `1px solid ${selected ? "var(--accent)" : "var(--line-strong)"}`,
+                        color: selected ? "var(--accent)" : "var(--fg-1)",
+                        background: selected ? "var(--accent-glow-soft)" : "transparent",
+                        fontSize: 12.5, transition: "all 200ms", cursor: "pointer",
+                      }}>{s}</button>
+                  );
+                })}
               </div>
             </div>
             <div>
@@ -356,6 +401,11 @@ function Field({ label, type = "text", value, onChange, placeholder }) {
 }
 
 window.GGFooter = function GGFooter() {
+  const SOCIAL = [
+    { name: "instagram", href: "https://www.instagram.com/glamourgeekmx/" },
+    { name: "facebook",  href: "https://www.facebook.com/GlamourGeekMX/" },
+    { name: "whatsapp",  href: "https://wa.me/529982416655" },
+  ];
   return (
     <footer style={{ padding: "60px 0 40px", borderTop: "1px solid var(--line)" }}>
       <div className="container">
@@ -372,15 +422,35 @@ window.GGFooter = function GGFooter() {
               Marketing digital + desarrollo de software. Cancún, México · Trabajamos remoto.
             </p>
           </div>
-          <FooterCol title="Servicios" items={["Marketing Digital", "Desarrollo Web", "Apps", "E-Commerce", "SEO", "PPC"]} />
-          <FooterCol title="Empresa" items={["Sobre nosotros", "Proceso", "Trabajo", "Contacto"]} />
-          <FooterCol title="Síguenos" items={["Instagram", "Facebook", "LinkedIn", "WhatsApp"]} />
+          <FooterCol title="Servicios" items={[
+            ["Marketing Digital", "/servicios/marketing"],
+            ["Desarrollo Web",    "/servicios/web"],
+            ["Apps iOS/Android",  "/servicios/apps"],
+            ["E-Commerce",        "/servicios/ecommerce"],
+            ["SEO",               "/servicios/seo"],
+            ["Campañas PPC",      "/servicios/ppc"],
+            ["Redes Sociales",    "/servicios/social"],
+            ["Agencia de IA",     "/servicios/ia"],
+          ]} />
+          <FooterCol title="Empresa" items={[
+            ["Nosotros",  "/nosotros"],
+            ["Proceso",   "/#proceso"],
+            ["Portafolio","/#portafolio"],
+            ["FAQ",       "/#faq"],
+            ["Contacto",  "/#contacto"],
+          ]} />
+          <FooterCol title="Síguenos" items={[
+            ["Instagram", "https://www.instagram.com/glamourgeekmx/"],
+            ["Facebook",  "https://www.facebook.com/GlamourGeekMX/"],
+            ["WhatsApp",  "https://wa.me/529982416655"],
+            ["Email",     "mailto:hola@glamourgeek.com.mx"],
+          ]} />
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 24, borderTop: "1px solid var(--line)", flexWrap: "wrap", gap: 16 }}>
           <p className="caption">© 2026 GlamourGeek. Todos los derechos reservados.</p>
           <div style={{ display: "flex", gap: 14 }}>
-            {["instagram", "facebook", "linkedin", "whatsapp"].map((n) => (
-              <a key={n} href="#" style={{
+            {SOCIAL.map(({ name, href }) => (
+              <a key={name} href={href} target="_blank" rel="noopener noreferrer" style={{
                 width: 36, height: 36, borderRadius: "50%",
                 border: "1px solid var(--line-strong)",
                 display: "flex", alignItems: "center", justifyContent: "center",
@@ -389,7 +459,7 @@ window.GGFooter = function GGFooter() {
               onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--line-strong)"; e.currentTarget.style.color = "var(--fg-1)"; }}
               >
-                <GGIcon name={n} size={16} />
+                <GGIcon name={name} size={16} />
               </a>
             ))}
           </div>
@@ -407,11 +477,16 @@ function FooterCol({ title, items }) {
     <div>
       <h4 className="caption" style={{ marginBottom: 16 }}>{title}</h4>
       <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
-        {items.map((i) => (
-          <li key={i}><a href="#" className="body-sm" style={{ color: "var(--fg-1)", transition: "color 200ms" }}
-            onMouseEnter={(e) => e.currentTarget.style.color = "var(--accent)"}
-            onMouseLeave={(e) => e.currentTarget.style.color = "var(--fg-1)"}
-          >{i}</a></li>
+        {items.map(([label, href]) => (
+          <li key={label}>
+            <a href={href}
+              target={href.startsWith("http") || href.startsWith("mailto") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="body-sm" style={{ color: "var(--fg-1)", transition: "color 200ms" }}
+              onMouseEnter={(e) => e.currentTarget.style.color = "var(--accent)"}
+              onMouseLeave={(e) => e.currentTarget.style.color = "var(--fg-1)"}
+            >{label}</a>
+          </li>
         ))}
       </ul>
     </div>

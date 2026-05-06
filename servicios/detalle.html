@@ -386,21 +386,13 @@ function ServicePage() {
 }
 
 function PageFooter() {
-  const footerLinks = [
-    ["Servicios", "#"],
-    ["Desarrollo Web", "#"],
-    ["Apps", "#"],
-    ["E-Commerce", "#"],
-    ["SEO", "#"],
-    ["PPC", "#"],
-  ];
   return (
     <footer style={{ padding: "60px 0 40px", borderTop: "1px solid var(--line)" }}>
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 40, marginBottom: 48 }} className="page-footer-grid">
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40, marginBottom: 48 }} className="page-footer-grid">
           {/* Brand */}
           <div>
-            <a href="../index.html" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16, textDecoration: "none" }}>
+            <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16, textDecoration: "none" }}>
               <img src="../assets/glamourgeek-isotipo.png" alt="GG" style={{ height: 36 }} />
               <span style={{ fontSize: 18, fontWeight: 700, fontFamily: "var(--font-display)", display: "flex", gap: 4 }}>
                 <span style={{ color: "var(--brand-cyan-bright)" }}>Glamour</span>
@@ -410,14 +402,23 @@ function PageFooter() {
             <p className="body-sm" style={{ maxWidth: 300, color: "var(--fg-1)", marginBottom: 24 }}>
               Marketing digital + desarrollo de software. Cancún, México · Trabajamos remoto.
             </p>
-            <a href="../index.html#contacto" className="btn btn-primary" style={{ fontSize: 13, padding: "10px 20px", display: "inline-flex" }}>
+            <a href="/#contacto" className="btn btn-primary" style={{ fontSize: 13, padding: "10px 20px", display: "inline-flex" }}>
               Cotiza tu proyecto →
             </a>
           </div>
           {/* Servicios */}
           <div>
             <p className="caption" style={{ marginBottom: 16, color: "var(--fg-2)" }}>Servicios</p>
-            {[["Marketing Digital","/servicios/marketing"],["Desarrollo Web","/servicios/web"],["Apps","/servicios/apps"],["E-Commerce","/servicios/ecommerce"],["SEO","/servicios/seo"],["PPC","/servicios/ppc"]].map(([label, href]) => (
+            {[
+              ["Marketing Digital","/servicios/marketing"],
+              ["Desarrollo Web","/servicios/web"],
+              ["Apps iOS/Android","/servicios/apps"],
+              ["E-Commerce","/servicios/ecommerce"],
+              ["SEO","/servicios/seo"],
+              ["Campañas PPC","/servicios/ppc"],
+              ["Redes Sociales","/servicios/social"],
+              ["Agencia de IA","/servicios/ia"],
+            ].map(([label, href]) => (
               <a key={label} href={href} style={{ display: "block", marginBottom: 10, color: "var(--fg-1)", textDecoration: "none", fontSize: 14, transition: "color 200ms" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-1)")}
@@ -427,8 +428,33 @@ function PageFooter() {
           {/* Empresa */}
           <div>
             <p className="caption" style={{ marginBottom: 16, color: "var(--fg-2)" }}>Empresa</p>
-            {[["Inicio","../index.html"],["Proceso","../index.html#proceso"],["Portafolio","../index.html#portafolio"],["FAQ","../index.html#faq"],["Contacto","../index.html#contacto"],["Servicios IA","ia.html"]].map(([label, href]) => (
+            {[
+              ["Inicio","/"],
+              ["Nosotros","/nosotros"],
+              ["Proceso","/#proceso"],
+              ["Portafolio","/#portafolio"],
+              ["FAQ","/#faq"],
+              ["Contacto","/#contacto"],
+            ].map(([label, href]) => (
               <a key={label} href={href} style={{ display: "block", marginBottom: 10, color: "var(--fg-1)", textDecoration: "none", fontSize: 14, transition: "color 200ms" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-1)")}
+              >{label}</a>
+            ))}
+          </div>
+          {/* Síguenos */}
+          <div>
+            <p className="caption" style={{ marginBottom: 16, color: "var(--fg-2)" }}>Síguenos</p>
+            {[
+              ["Instagram","https://www.instagram.com/glamourgeekmx/"],
+              ["Facebook","https://www.facebook.com/GlamourGeekMX/"],
+              ["WhatsApp","https://wa.me/529982416655"],
+              ["Email","mailto:hola@glamourgeek.com.mx"],
+            ].map(([label, href]) => (
+              <a key={label} href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                style={{ display: "block", marginBottom: 10, color: "var(--fg-1)", textDecoration: "none", fontSize: 14, transition: "color 200ms" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-1)")}
               >{label}</a>
@@ -437,14 +463,29 @@ function PageFooter() {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 24, borderTop: "1px solid var(--line)", flexWrap: "wrap", gap: 16 }}>
           <p className="caption">© 2026 GlamourGeek. Todos los derechos reservados.</p>
-          <p className="caption" style={{ color: "var(--fg-2)" }}>Cancún, México · hola@glamourgeek.com.mx</p>
+          <div style={{ display: "flex", gap: 12 }}>
+            {[
+              ["https://www.instagram.com/glamourgeekmx/","IG"],
+              ["https://www.facebook.com/GlamourGeekMX/","FB"],
+              ["https://wa.me/529982416655","WA"],
+            ].map(([href, label]) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" style={{
+                width: 36, height: 36, borderRadius: "50%",
+                border: "1px solid var(--line-strong)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                color: "var(--fg-1)", transition: "all 200ms", textDecoration: "none",
+                fontSize: 10, fontFamily: "var(--font-mono)", fontWeight: 600,
+              }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--line-strong)"; e.currentTarget.style.color = "var(--fg-1)"; }}
+              >{label}</a>
+            ))}
+          </div>
         </div>
       </div>
       <style>{`
-        @media (max-width: 640px) {
-          .page-footer-grid { grid-template-columns: 1fr 1fr !important; }
-          .page-footer-grid > div:first-child { grid-column: span 2; }
-        }
+        @media (max-width: 760px) { .page-footer-grid { grid-template-columns: 1fr 1fr !important; } }
+        @media (max-width: 480px) { .page-footer-grid { grid-template-columns: 1fr !important; } }
       `}</style>
     </footer>
   );

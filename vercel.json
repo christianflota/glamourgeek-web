@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/nosotros", "destination": "/nosotros/index.html" },
     { "source": "/servicios/ia", "destination": "/servicios/ia.html" },
     { "source": "/servicios/ia/:id", "destination": "/servicios/ia.html" },
     { "source": "/servicios/:id", "destination": "/servicios/detalle.html" },

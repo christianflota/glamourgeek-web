@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nosotros | GlamourGeek · Agencia Digital en México</title>
+<meta name="description" content="Conoce al equipo de GlamourGeek. Agencia de marketing digital y desarrollo de software con sede en Cancún, México. +120 proyectos entregados." />
+<link rel="canonical" href="https://glamourgeek.com.mx/nosotros" />
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://glamourgeek.com.mx/nosotros" />
+<meta property="og:site_name" content="GlamourGeek" />
+<meta property="og:locale" content="es_MX" />
+<meta property="og:title" content="Nosotros | GlamourGeek · Agencia Digital en México" />
+<meta property="og:description" content="Agencia de marketing digital y desarrollo de software con sede en Cancún. Conoce quiénes somos, cómo trabajamos y qué nos hace diferentes." />
+<meta property="og:image" content="https://glamourgeek.com.mx/assets/og-glamourgeek.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://glamourgeek.com.mx/assets/og-glamourgeek.jpg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Archivo+Black&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css" />
+<link rel="icon" href="../assets/glamourgeek-isotipo.png" />
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel">
+const { useState } = React;
+
+/* ─── NAV ─── */
+function Nav() {
+  const [open, setOpen] = useState(false);
+  const links = [
+    ["Servicios", "/#servicios"],
+    ["IA", "/#ia"],
+    ["Portafolio", "/#portafolio"],
+    ["Nosotros", "/nosotros"],
+    ["Contacto", "/#contacto"],
+  ];
+  return (
+    <>
+      <header style={{
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+        height: 68,
+        borderBottom: "1px solid var(--line)",
+        background: "rgba(7,8,12,0.85)",
+        backdropFilter: "blur(16px)",
+        display: "flex", alignItems: "center",
+      }}>
+        <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
+          <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+            <img src="../assets/glamourgeek-isotipo.png" alt="GG" style={{ height: 32 }} />
+            <span style={{ fontSize: 16, fontWeight: 700, fontFamily: "var(--font-display)" }}>
+              <span style={{ color: "var(--brand-cyan-bright)" }}>Glamour</span>
+              <span style={{ color: "var(--brand-coral-bright)" }}>Geek</span>
+            </span>
+          </a>
+          <nav style={{ display: "flex", gap: 32, alignItems: "center" }} className="gg-nav-links">
+            {links.map(([label, href]) => (
+              <a key={label} href={href} style={{
+                fontSize: 14, color: label === "Nosotros" ? "var(--accent)" : "var(--fg-1)",
+                textDecoration: "none", transition: "color 200ms",
+                fontWeight: label === "Nosotros" ? 600 : 400,
+              }}
+                onMouseEnter={(e) => e.currentTarget.style.color = "var(--fg-0)"}
+                onMouseLeave={(e) => e.currentTarget.style.color = label === "Nosotros" ? "var(--accent)" : "var(--fg-1)"}
+              >{label}</a>
+            ))}
+          </nav>
+          <a href="/#contacto" className="btn btn-primary gg-cta-desktop" style={{ fontSize: 13, padding: "10px 20px" }}>
+            Cotizar proyecto
+          </a>
+          <button className="gg-hamburger" onClick={() => setOpen(!open)} style={{
+            display: "none", flexDirection: "column", gap: 5,
+            background: "none", border: "none", cursor: "pointer", padding: 8,
+          }}>
+            {[0,1,2].map(i => <span key={i} style={{ display: "block", width: 22, height: 2, background: "var(--fg-0)", borderRadius: 2, transition: "all 280ms" }} />)}
+          </button>
+        </div>
+      </header>
+      {/* Mobile overlay */}
+      <div style={{
+        position: "fixed", inset: 0, zIndex: 99,
+        background: "rgba(7,8,12,0.97)",
+        display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 32,
+        opacity: open ? 1 : 0, pointerEvents: open ? "all" : "none",
+        transition: "opacity 280ms",
+      }}>
+        {links.map(([label, href], i) => (
+          <a key={label} href={href} onClick={() => setOpen(false)} style={{
+            fontSize: 28, fontFamily: "var(--font-display)", fontWeight: 700,
+            color: label === "Nosotros" ? "var(--accent)" : "var(--fg-0)",
+            textDecoration: "none",
+            transform: open ? "translateY(0)" : "translateY(24px)",
+            transition: `transform 320ms ${i * 50}ms, opacity 320ms ${i * 50}ms`,
+            opacity: open ? 1 : 0,
+          }}>{label}</a>
+        ))}
+        <a href="/#contacto" className="btn btn-primary" onClick={() => setOpen(false)} style={{ marginTop: 16 }}>
+          Cotizar proyecto
+        </a>
+      </div>
+      <style>{`
+        @media (max-width: 860px) {
+          .gg-nav-links { display: none !important; }
+          .gg-cta-desktop { display: none !important; }
+          .gg-hamburger { display: flex !important; }
+        }
+      `}</style>
+    </>
+  );
+}
+
+/* ─── HERO ─── */
+function Hero() {
+  return (
+    <section style={{
+      paddingTop: 160, paddingBottom: 100,
+      borderBottom: "1px solid var(--line)",
+      position: "relative", overflow: "hidden",
+    }}>
+      <div style={{
+        position: "absolute", inset: 0,
+        background: `
+          radial-gradient(ellipse at 20% 40%, rgba(77,216,255,0.10), transparent 50%),
+          radial-gradient(ellipse at 80% 60%, rgba(255,107,126,0.10), transparent 50%)
+        `,
+        pointerEvents: "none",
+      }} />
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
+        <span className="eyebrow">/ Nosotros</span>
+        <h1 style={{ marginTop: 20, maxWidth: 820, fontSize: "clamp(48px, 7vw, 96px)" }}>
+          Detrás del código<br />y las campañas.
+        </h1>
+        <p className="body-lg" style={{ marginTop: 24, maxWidth: 580, color: "var(--fg-1)" }}>
+          Somos GlamourGeek — una agencia digital basada en Cancún, México,
+          con clientes en toda Latinoamérica. Combinamos estrategia de marketing,
+          desarrollo de software e inteligencia artificial para hacer crecer negocios reales.
+        </p>
+        <div style={{ display: "flex", gap: 16, marginTop: 40, flexWrap: "wrap" }}>
+          <a href="/#contacto" className="btn btn-primary">Trabaja con nosotros</a>
+          <a href="/#portafolio" className="btn btn-ghost">Ver portafolio</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── NÚMEROS ─── */
+function Numbers() {
+  const stats = [
+    { n: "+120", label: "Proyectos entregados" },
+    { n: "+6",   label: "Años de experiencia" },
+    { n: "100%", label: "Proyectos en tiempo" },
+    { n: "MX",   label: "Basados en Cancún" },
+  ];
+  return (
+    <section style={{ padding: "80px 0", borderBottom: "1px solid var(--line)" }}>
+      <div className="container">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 32 }} className="stats-grid">
+          {stats.map(({ n, label }) => (
+            <div key={label} style={{ textAlign: "center", padding: "32px 16px", border: "1px solid var(--line)", borderRadius: "var(--r-lg)", background: "var(--bg-1)" }}>
+              <div className="font-display" style={{ fontSize: "clamp(40px,5vw,72px)", fontWeight: 700, letterSpacing: "-0.04em",
+                background: "linear-gradient(135deg, var(--brand-cyan-bright), var(--brand-coral-bright))",
+                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+              }}>{n}</div>
+              <p className="caption" style={{ marginTop: 8, color: "var(--fg-2)" }}>{label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <style>{`@media(max-width:700px){.stats-grid{grid-template-columns:repeat(2,1fr)!important;}}`}</style>
+    </section>
+  );
+}
+
+/* ─── HISTORIA ─── */
+function Story() {
+  return (
+    <section style={{ padding: "120px 0", borderBottom: "1px solid var(--line)" }}>
+      <div className="container">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 80, alignItems: "center" }} className="story-grid">
+          <div>
+            <span className="eyebrow">/ Nuestra historia</span>
+            <h2 style={{ marginTop: 16 }}>Empezamos haciendo,<br />no prometiendo.</h2>
+            <p className="body" style={{ marginTop: 24, color: "var(--fg-1)" }}>
+              GlamourGeek nació de la necesidad de tener una agencia que realmente entregara resultados medibles.
+              Sin slides bonitas vacías, sin métricas de vanidad — solo trabajo real con impacto real en el negocio del cliente.
+            </p>
+            <p className="body" style={{ marginTop: 16, color: "var(--fg-1)" }}>
+              Con base en Cancún y operación 100% remota, hemos trabajado con startups, restaurantes, hoteles,
+              marcas de moda, plataformas SaaS y franquicias en todo México y Latinoamérica.
+            </p>
+            <p className="body" style={{ marginTop: 16, color: "var(--fg-1)" }}>
+              Hoy somos la combinación que pocos tienen: estrategia de marketing + capacidad técnica de desarrollo + automatización con IA. Todo bajo un mismo techo.
+            </p>
+          </div>
+          <div style={{
+            background: "var(--bg-1)", border: "1px solid var(--line)",
+            borderRadius: "var(--r-lg)", padding: 40,
+            position: "relative", overflow: "hidden",
+          }}>
+            <div style={{
+              position: "absolute", top: -80, right: -80, width: 300, height: 300,
+              background: "radial-gradient(circle, rgba(77,216,255,0.15), transparent 60%)",
+              filter: "blur(40px)", pointerEvents: "none",
+            }} />
+            <div style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", gap: 28 }}>
+              {[
+                { year: "2018", event: "Fundamos GlamourGeek con foco en diseño web y redes sociales." },
+                { year: "2020", event: "Expandimos a desarrollo de software a la medida y apps móviles." },
+                { year: "2022", event: "+80 proyectos entregados. Abrimos operaciones en toda Latinoamérica." },
+                { year: "2024", event: "Lanzamos nuestra división de Agencia de IA — automatización con GPT, n8n y Make." },
+                { year: "2026", event: "+120 proyectos. Seguimos construyendo el internet de nuestros clientes." },
+              ].map(({ year, event }) => (
+                <div key={year} style={{ display: "flex", gap: 20, alignItems: "flex-start" }}>
+                  <span className="font-mono" style={{ fontSize: 13, color: "var(--brand-cyan-bright)", flexShrink: 0, paddingTop: 2 }}>{year}</span>
+                  <p className="body-sm" style={{ color: "var(--fg-1)" }}>{event}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <style>{`@media(max-width:860px){.story-grid{grid-template-columns:1fr!important;gap:48px!important;}}`}</style>
+    </section>
+  );
+}
+
+/* ─── VALORES ─── */
+function Values() {
+  const values = [
+    { icon: "⚡", title: "Velocidad sin descuido", desc: "Movemos rápido, pero no a costa de la calidad. Cada entregable pasa por revisión antes de salir." },
+    { icon: "📊", title: "Datos sobre intuición", desc: "Cada decisión de marketing y técnica se toma con datos. No adivinos, no expertos en LinkedIn." },
+    { icon: "🔁", title: "Iteración constante", desc: "Lanzamos, medimos y mejoramos. El primer lanzamiento es el inicio, no el final." },
+    { icon: "🤝", title: "Honestidad radical", desc: "Si algo no va a funcionar, te lo decimos antes de cobrarlo. Preferimos perderte como cliente a traicionarte." },
+    { icon: "🧠", title: "Tech-first siempre", desc: "Adoptamos IA, automatización y nuevas herramientas antes que nadie. Nos adelantamos a las curvas." },
+    { icon: "🎯", title: "Resultados medibles", desc: "No trabajamos en el vacío. Cada proyecto tiene KPIs definidos y reportes que los demuestran." },
+  ];
+  return (
+    <section style={{ padding: "120px 0", borderBottom: "1px solid var(--line)" }}>
+      <div className="container">
+        <div style={{ marginBottom: 64 }}>
+          <span className="eyebrow">/ Cómo trabajamos</span>
+          <h2 style={{ marginTop: 16 }}>Los valores que no negociamos.</h2>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }} className="values-grid">
+          {values.map(({ icon, title, desc }) => (
+            <div key={title} style={{
+              background: "var(--bg-1)", border: "1px solid var(--line)",
+              borderRadius: "var(--r-lg)", padding: 28,
+              transition: "border-color 240ms",
+            }}
+              onMouseEnter={(e) => e.currentTarget.style.borderColor = "var(--accent)"}
+              onMouseLeave={(e) => e.currentTarget.style.borderColor = "var(--line)"}
+            >
+              <div style={{ fontSize: 28, marginBottom: 16 }}>{icon}</div>
+              <h3 style={{ fontSize: 18, marginBottom: 10 }}>{title}</h3>
+              <p className="body-sm" style={{ color: "var(--fg-1)" }}>{desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <style>{`
+        @media(max-width:860px){.values-grid{grid-template-columns:repeat(2,1fr)!important;}}
+        @media(max-width:560px){.values-grid{grid-template-columns:1fr!important;}}
+      `}</style>
+    </section>
+  );
+}
+
+/* ─── SERVICIOS RÁPIDOS ─── */
+function ServicesQuick() {
+  const items = [
+    ["Marketing Digital", "/servicios/marketing"],
+    ["Desarrollo Web",    "/servicios/web"],
+    ["Apps iOS/Android",  "/servicios/apps"],
+    ["E-Commerce",        "/servicios/ecommerce"],
+    ["SEO",               "/servicios/seo"],
+    ["Campañas PPC",      "/servicios/ppc"],
+    ["Redes Sociales",    "/servicios/social"],
+    ["Foto y Video",      "/servicios/video"],
+    ["Agencia de IA",     "/servicios/ia"],
+  ];
+  return (
+    <section style={{ padding: "120px 0", borderBottom: "1px solid var(--line)" }}>
+      <div className="container">
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 24, marginBottom: 48 }}>
+          <div>
+            <span className="eyebrow">/ Lo que hacemos</span>
+            <h2 style={{ marginTop: 16 }}>Servicios</h2>
+          </div>
+          <a href="/#servicios" className="btn btn-ghost" style={{ fontSize: 13 }}>Ver todos →</a>
+        </div>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+          {items.map(([label, href]) => (
+            <a key={label} href={href} style={{
+              padding: "12px 20px",
+              border: "1px solid var(--line-strong)",
+              borderRadius: 999,
+              fontSize: 14, color: "var(--fg-1)",
+              textDecoration: "none",
+              transition: "all 200ms",
+              background: "transparent",
+            }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "var(--accent)";
+                e.currentTarget.style.color = "var(--accent)";
+                e.currentTarget.style.background = "var(--accent-glow-soft)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "var(--line-strong)";
+                e.currentTarget.style.color = "var(--fg-1)";
+                e.currentTarget.style.background = "transparent";
+              }}
+            >{label}</a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── CTA ─── */
+function CTA() {
+  return (
+    <section style={{ padding: "120px 0", position: "relative", overflow: "hidden" }}>
+      <div style={{
+        position: "absolute", inset: 0,
+        background: "radial-gradient(circle at 50% 60%, rgba(77,216,255,0.08), transparent 60%)",
+        pointerEvents: "none",
+      }} />
+      <div className="container" style={{ position: "relative", zIndex: 1, textAlign: "center" }}>
+        <span className="eyebrow">/ Siguiente paso</span>
+        <h2 style={{ marginTop: 16, fontSize: "clamp(40px,6vw,80px)", maxWidth: 700, margin: "16px auto 0" }}>
+          ¿Listo para hacer crecer tu negocio?
+        </h2>
+        <p className="body-lg" style={{ marginTop: 24, color: "var(--fg-1)", maxWidth: 500, margin: "24px auto 0" }}>
+          Cuéntanos tu proyecto y recibe un primer estimado en menos de 24 horas.
+        </p>
+        <div style={{ display: "flex", gap: 16, justifyContent: "center", marginTop: 40, flexWrap: "wrap" }}>
+          <a href="/#contacto" className="btn btn-primary">Cotiza tu proyecto</a>
+          <a href="https://wa.me/529982416655" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+            WhatsApp directo
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── FOOTER ─── */
+function PageFooter() {
+  const SOCIAL = [
+    { name: "instagram", icon: "IG", href: "https://www.instagram.com/glamourgeekmx/", label: "Instagram" },
+    { name: "facebook",  icon: "FB", href: "https://www.facebook.com/GlamourGeekMX/",  label: "Facebook" },
+    { name: "whatsapp",  icon: "WA", href: "https://wa.me/529982416655",                label: "WhatsApp" },
+  ];
+  return (
+    <footer style={{ padding: "60px 0 40px", borderTop: "1px solid var(--line)" }}>
+      <div className="container">
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40, marginBottom: 48 }} className="page-footer-grid">
+          <div>
+            <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16, textDecoration: "none" }}>
+              <img src="../assets/glamourgeek-isotipo.png" alt="GG" style={{ height: 36 }} />
+              <span style={{ fontSize: 18, fontWeight: 700, fontFamily: "var(--font-display)", display: "flex", gap: 4 }}>
+                <span style={{ color: "var(--brand-cyan-bright)" }}>Glamour</span>
+                <span style={{ color: "var(--brand-coral-bright)" }}>Geek</span>
+              </span>
+            </a>
+            <p style={{ maxWidth: 300, color: "var(--fg-1)", fontSize: 14, lineHeight: 1.6, marginBottom: 24 }}>
+              Marketing digital + desarrollo de software. Cancún, México · Trabajamos remoto.
+            </p>
+            <a href="/#contacto" className="btn btn-primary" style={{ fontSize: 13, padding: "10px 20px", display: "inline-flex" }}>
+              Cotiza tu proyecto →
+            </a>
+          </div>
+          <div>
+            <p style={{ marginBottom: 16, color: "var(--fg-2)", fontSize: 11, fontFamily: "var(--font-mono)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Servicios</p>
+            {[
+              ["/servicios/marketing","Marketing Digital"],
+              ["/servicios/web","Desarrollo Web"],
+              ["/servicios/apps","Apps iOS/Android"],
+              ["/servicios/ecommerce","E-Commerce"],
+              ["/servicios/seo","SEO"],
+              ["/servicios/ppc","Campañas PPC"],
+              ["/servicios/ia","Agencia de IA"],
+            ].map(([href, label]) => (
+              <a key={label} href={href} style={{ display: "block", marginBottom: 10, color: "var(--fg-1)", textDecoration: "none", fontSize: 14, transition: "color 200ms" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-1)")}
+              >{label}</a>
+            ))}
+          </div>
+          <div>
+            <p style={{ marginBottom: 16, color: "var(--fg-2)", fontSize: 11, fontFamily: "var(--font-mono)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Empresa</p>
+            {[
+              ["/","Inicio"],
+              ["/nosotros","Nosotros"],
+              ["/#proceso","Proceso"],
+              ["/#portafolio","Portafolio"],
+              ["/#faq","FAQ"],
+              ["/#contacto","Contacto"],
+            ].map(([href, label]) => (
+              <a key={label} href={href} style={{ display: "block", marginBottom: 10, color: "var(--fg-1)", textDecoration: "none", fontSize: 14, transition: "color 200ms" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-1)")}
+              >{label}</a>
+            ))}
+          </div>
+          <div>
+            <p style={{ marginBottom: 16, color: "var(--fg-2)", fontSize: 11, fontFamily: "var(--font-mono)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Síguenos</p>
+            {[
+              ["https://www.instagram.com/glamourgeekmx/","Instagram"],
+              ["https://www.facebook.com/GlamourGeekMX/","Facebook"],
+              ["https://wa.me/529982416655","WhatsApp"],
+              ["mailto:hola@glamourgeek.com.mx","hola@glamourgeek.com.mx"],
+            ].map(([href, label]) => (
+              <a key={label} href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                style={{ display: "block", marginBottom: 10, color: "var(--fg-1)", textDecoration: "none", fontSize: 14, transition: "color 200ms" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-1)")}
+              >{label}</a>
+            ))}
+          </div>
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 24, borderTop: "1px solid var(--line)", flexWrap: "wrap", gap: 16 }}>
+          <p style={{ fontSize: 12, fontFamily: "var(--font-mono)", color: "var(--fg-3)" }}>© 2026 GlamourGeek. Todos los derechos reservados.</p>
+          <div style={{ display: "flex", gap: 12 }}>
+            {[
+              ["https://www.instagram.com/glamourgeekmx/", "instagram"],
+              ["https://www.facebook.com/GlamourGeekMX/",  "facebook"],
+              ["https://wa.me/529982416655",                "whatsapp"],
+            ].map(([href, name]) => (
+              <a key={name} href={href} target="_blank" rel="noopener noreferrer" style={{
+                width: 36, height: 36, borderRadius: "50%",
+                border: "1px solid var(--line-strong)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                color: "var(--fg-1)", transition: "all 200ms", textDecoration: "none",
+                fontSize: 10, fontFamily: "var(--font-mono)", fontWeight: 600, textTransform: "uppercase",
+              }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--line-strong)"; e.currentTarget.style.color = "var(--fg-1)"; }}
+              >{name === "instagram" ? "IG" : name === "facebook" ? "FB" : "WA"}</a>
+            ))}
+          </div>
+        </div>
+      </div>
+      <style>{`
+        @media (max-width: 760px) { .page-footer-grid { grid-template-columns: 1fr 1fr !important; } }
+        @media (max-width: 480px) { .page-footer-grid { grid-template-columns: 1fr !important; } }
+      `}</style>
+    </footer>
+  );
+}
+
+/* ─── APP ─── */
+function App() {
+  return (
+    <>
+      <Nav />
+      <main>
+        <Hero />
+        <Numbers />
+        <Story />
+        <Values />
+        <ServicesQuick />
+        <CTA />
+      </main>
+      <PageFooter />
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

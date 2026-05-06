@@ -326,9 +326,9 @@ function PageFooter() {
   return (
     <footer style={{ padding: "60px 0 40px", borderTop: "1px solid var(--line)" }}>
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 40, marginBottom: 48 }} className="page-footer-grid">
+        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40, marginBottom: 48 }} className="page-footer-grid">
           <div>
-            <a href="../index.html" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16, textDecoration: "none" }}>
+            <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16, textDecoration: "none" }}>
               <img src="../assets/glamourgeek-isotipo.png" alt="GG" style={{ height: 36 }} />
               <span style={{ fontSize: 18, fontWeight: 700, fontFamily: "var(--font-display)", display: "flex", gap: 4 }}>
                 <span style={{ color: "var(--brand-cyan-bright)" }}>Glamour</span>
@@ -338,13 +338,22 @@ function PageFooter() {
             <p style={{ maxWidth: 300, color: "var(--fg-1)", fontSize: 14, lineHeight: 1.6, marginBottom: 24 }}>
               Marketing digital + desarrollo de software. Cancún, México · Trabajamos remoto.
             </p>
-            <a href="../index.html#contacto" className="btn btn-primary" style={{ fontSize: 13, padding: "10px 20px", display: "inline-flex" }}>
+            <a href="/#contacto" className="btn btn-primary" style={{ fontSize: 13, padding: "10px 20px", display: "inline-flex" }}>
               Cotiza tu proyecto →
             </a>
           </div>
           <div>
             <p style={{ marginBottom: 16, color: "var(--fg-2)", fontSize: 11, fontFamily: "var(--font-mono)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Servicios</p>
-            {[["/servicios/marketing","Marketing Digital"],["/servicios/web","Desarrollo Web"],["/servicios/apps","Apps"],["/servicios/ecommerce","E-Commerce"],["/servicios/seo","SEO"],["/servicios/ppc","PPC"]].map(([href, label]) => (
+            {[
+              ["/servicios/marketing","Marketing Digital"],
+              ["/servicios/web","Desarrollo Web"],
+              ["/servicios/apps","Apps iOS/Android"],
+              ["/servicios/ecommerce","E-Commerce"],
+              ["/servicios/seo","SEO"],
+              ["/servicios/ppc","Campañas PPC"],
+              ["/servicios/social","Redes Sociales"],
+              ["/servicios/ia","Agencia de IA"],
+            ].map(([href, label]) => (
               <a key={label} href={href} style={{ display: "block", marginBottom: 10, color: "var(--fg-1)", textDecoration: "none", fontSize: 14, transition: "color 200ms" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-1)")}
@@ -353,8 +362,32 @@ function PageFooter() {
           </div>
           <div>
             <p style={{ marginBottom: 16, color: "var(--fg-2)", fontSize: 11, fontFamily: "var(--font-mono)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Empresa</p>
-            {[["../index.html","Inicio"],["../index.html#proceso","Proceso"],["../index.html#portafolio","Portafolio"],["../index.html#faq","FAQ"],["../index.html#contacto","Contacto"]].map(([href, label]) => (
+            {[
+              ["/","Inicio"],
+              ["/nosotros","Nosotros"],
+              ["/#proceso","Proceso"],
+              ["/#portafolio","Portafolio"],
+              ["/#faq","FAQ"],
+              ["/#contacto","Contacto"],
+            ].map(([href, label]) => (
               <a key={label} href={href} style={{ display: "block", marginBottom: 10, color: "var(--fg-1)", textDecoration: "none", fontSize: 14, transition: "color 200ms" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-1)")}
+              >{label}</a>
+            ))}
+          </div>
+          <div>
+            <p style={{ marginBottom: 16, color: "var(--fg-2)", fontSize: 11, fontFamily: "var(--font-mono)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Síguenos</p>
+            {[
+              ["Instagram","https://www.instagram.com/glamourgeekmx/"],
+              ["Facebook","https://www.facebook.com/GlamourGeekMX/"],
+              ["WhatsApp","https://wa.me/529982416655"],
+              ["Email","mailto:hola@glamourgeek.com.mx"],
+            ].map(([label, href]) => (
+              <a key={label} href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                style={{ display: "block", marginBottom: 10, color: "var(--fg-1)", textDecoration: "none", fontSize: 14, transition: "color 200ms" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "var(--fg-1)")}
               >{label}</a>
@@ -363,14 +396,29 @@ function PageFooter() {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 24, borderTop: "1px solid var(--line)", flexWrap: "wrap", gap: 16 }}>
           <p style={{ fontSize: 12, fontFamily: "var(--font-mono)", color: "var(--fg-3)" }}>© 2026 GlamourGeek. Todos los derechos reservados.</p>
-          <p style={{ fontSize: 12, fontFamily: "var(--font-mono)", color: "var(--fg-2)" }}>hola@glamourgeek.com.mx</p>
+          <div style={{ display: "flex", gap: 12 }}>
+            {[
+              ["https://www.instagram.com/glamourgeekmx/","IG"],
+              ["https://www.facebook.com/GlamourGeekMX/","FB"],
+              ["https://wa.me/529982416655","WA"],
+            ].map(([href, label]) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" style={{
+                width: 36, height: 36, borderRadius: "50%",
+                border: "1px solid var(--line-strong)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                color: "var(--fg-1)", transition: "all 200ms", textDecoration: "none",
+                fontSize: 10, fontFamily: "var(--font-mono)", fontWeight: 600,
+              }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--line-strong)"; e.currentTarget.style.color = "var(--fg-1)"; }}
+              >{label}</a>
+            ))}
+          </div>
         </div>
       </div>
       <style>{`
-        @media (max-width: 640px) {
-          .page-footer-grid { grid-template-columns: 1fr 1fr !important; }
-          .page-footer-grid > div:first-child { grid-column: span 2; }
-        }
+        @media (max-width: 760px) { .page-footer-grid { grid-template-columns: 1fr 1fr !important; } }
+        @media (max-width: 480px) { .page-footer-grid { grid-template-columns: 1fr !important; } }
       `}</style>
     </footer>
   );
