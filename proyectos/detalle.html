@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,6 +32,7 @@
 <body>
 <div id="root"></div>
 
+<script src="/config.js"></script>
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
@@ -49,15 +50,15 @@ function Nav() {
         border: "1px solid var(--line)",
         borderRadius: 999,
       }}>
-        <a href="../index.html" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <img src="../assets/glamourgeek-isotipo.png" alt="GlamourGeek" style={{ height: 32 }} />
+        <a href="/" style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <img src="/assets/glamourgeek-isotipo-96.webp" alt="GlamourGeek" width="75" height="96" style={{ height: 32, width: "auto" }} />
           <span className="font-display" style={{ fontSize: 17, fontWeight: 700, display: "flex", gap: 4 }}>
             <span style={{ color: "var(--brand-cyan-bright)" }}>Glamour</span>
             <span style={{ color: "var(--brand-coral-bright)" }}>Geek</span>
           </span>
         </a>
-        <a href="index.html" className="det-back" style={{ color: "var(--fg-1)", fontSize: 14, display: "flex", alignItems: "center", gap: 6 }}>← Todos los proyectos</a>
-        <a href="../index.html#contacto" className="btn btn-primary det-cta" style={{ padding: "10px 18px", fontSize: 14 }}>
+        <a href="/proyectos" className="det-back" style={{ color: "var(--fg-1)", fontSize: 14, display: "flex", alignItems: "center", gap: 6 }}>← Todos los proyectos</a>
+        <a href="/#contacto" className="btn btn-primary det-cta" style={{ padding: "10px 18px", fontSize: 14 }}>
           <span className="det-cta-text">Cotiza tu proyecto</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
@@ -83,12 +84,13 @@ function Detail() {
   const glow = project.color === "coral" ? "rgba(255,107,126,0.4)" : "rgba(77,216,255,0.4)";
 
   React.useEffect(() => {
+    if (document.documentElement.hasAttribute("data-prerendered")) return;
     const base = 'https://glamourgeek.com.mx';
     const url = `${base}/proyectos/${project.id}`;
     const img = `${base}/assets/screenshots/${project.id}.jpg`;
     const desc = `${project.client} · ${project.tag} — ${project.desc} Caso de éxito de GlamourGeek, agencia digital en México.`;
 
-    document.title = `${project.client} · GlamourGeek | Agencia Digital México`;
+    document.title = `${project.client} — Caso de éxito | GlamourGeek`;
 
     const setMeta = (sel, attr, val) => {
       let el = document.querySelector(sel);
@@ -138,7 +140,7 @@ function Detail() {
             filter: "blur(40px)", pointerEvents: "none",
           }} />
           <div className="container" style={{ position: "relative", zIndex: 1 }}>
-            <a href="index.html" style={{ color: "var(--fg-2)", fontFamily: "var(--font-mono)", fontSize: 12, display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 32 }}>
+            <a href="/proyectos" style={{ color: "var(--fg-2)", fontFamily: "var(--font-mono)", fontSize: 12, display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 32 }}>
               ← Portafolio
             </a>
             <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 24, flexWrap: "wrap" }}>
@@ -147,7 +149,17 @@ function Detail() {
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 40, alignItems: "center" }} className="detail-hero">
               <h1 style={{ fontSize: "clamp(48px, 8vw, 96px)" }}>{project.client}</h1>
-              <div style={{ fontSize: 120, lineHeight: 1 }} className="detail-emoji">{project.emoji}</div>
+              <div className="detail-emoji" style={{
+                width: 340, maxWidth: "100%", borderRadius: 12, overflow: "hidden",
+                border: `1px solid ${accent}55`, boxShadow: `0 16px 48px ${glow}`,
+              }}>
+                <img
+                  src={`/assets/screenshots/${project.id}-480.webp`}
+                  alt={`Vista previa de ${project.client}`}
+                  width="480" height="300" decoding="async"
+                  style={{ width: "100%", height: "auto", display: "block" }}
+                />
+              </div>
             </div>
             <p className="body-lg" style={{ marginTop: 32, maxWidth: 720 }}>{project.longDesc}</p>
             <div style={{ marginTop: 40, display: "flex", gap: 14, flexWrap: "wrap" }}>
@@ -155,7 +167,7 @@ function Detail() {
                 Visitar el sitio
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
               </a>
-              <a href="../index.html#contacto" className="btn btn-ghost">Quiero algo similar</a>
+              <a href="/#contacto" className="btn btn-ghost">Quiero algo similar</a>
             </div>
           </div>
         </section>
@@ -229,8 +241,11 @@ function Detail() {
               </div>
               <div style={{ aspectRatio: "16/9", position: "relative", overflow: "hidden" }}>
                 <img
-                  src={`../assets/screenshots/${project.id}.jpg`}
-                  alt={`${project.client} screenshot`}
+                  src={`/assets/screenshots/${project.id}.webp`}
+                  srcSet={`/assets/screenshots/${project.id}-480.webp 480w, /assets/screenshots/${project.id}.webp 1440w`}
+                  sizes="(max-width: 1320px) 100vw, 1264px"
+                  alt={`Captura del sitio de ${project.client}`}
+                  width="1440" height="900" loading="lazy" decoding="async"
                   style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
                   onError={(e) => {
                     e.target.style.display = "none";
@@ -329,7 +344,7 @@ function PageFooter() {
         <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40, marginBottom: 48 }} className="page-footer-grid">
           <div>
             <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16, textDecoration: "none" }}>
-              <img src="../assets/glamourgeek-isotipo.png" alt="GG" style={{ height: 36 }} />
+              <img src="/assets/glamourgeek-isotipo-96.webp" alt="GlamourGeek" width="75" height="96" style={{ height: 36, width: "auto" }} />
               <span style={{ fontSize: 18, fontWeight: 700, fontFamily: "var(--font-display)", display: "flex", gap: 4 }}>
                 <span style={{ color: "var(--brand-cyan-bright)" }}>Glamour</span>
                 <span style={{ color: "var(--brand-coral-bright)" }}>Geek</span>

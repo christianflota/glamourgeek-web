@@ -329,3 +329,16 @@ body.has-custom-cursor a, body.has-custom-cursor button { cursor: none; }
   mask-composite: exclude;
   z-index: -1;
 }
+
+/* ===== Áreas táctiles (móvil): mínimo 44 px ===== */
+@media (pointer: coarse) {
+  header a, header button { min-height: 44px; }
+  footer a:not(.btn) {
+    display: flex !important;
+    align-items: center;
+    min-height: 44px;
+    min-width: 44px;
+    margin-bottom: 0 !important;
+  }
+  form button[type="button"], #proceso button { min-height: 44px; }
+}

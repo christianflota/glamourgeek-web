@@ -108,7 +108,7 @@ window.GGAIServices = function GGAIServices() {
               <p className="body-sm">Diagnóstico desde $999 MXN por 30 min. Identificamos los 3 procesos con mayor potencial de IA en tu negocio.</p>
             </div>
           </div>
-          <button className="btn btn-primary" onClick={() => window.Cal && window.Cal("modal", { calLink: "christian-flota-idnkej" })}>
+          <button className="btn btn-primary" onClick={() => window.ggOpenCal && window.ggOpenCal("christian-flota-idnkej")}>
             Agendar diagnóstico
             <GGIcon name="arrow-right" size={16} stroke={2} />
           </button>
