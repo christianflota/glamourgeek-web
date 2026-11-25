@@ -110,7 +110,7 @@ function ProjectsIndex() {
             }}>generan resultados</span>.
           </h1>
           <p className="body-lg" style={{ marginTop: 24, maxWidth: 600 }}>
-            {items.length} casos de éxito en marketplaces, SaaS, apps móviles, sitios corporativos y plataformas industriales.
+            {items.length} casos de éxito en marketplaces, SaaS, sitios corporativos y plataformas industriales, y {window.GG_DATA.apps.filter((app) => app.status !== "desarrollo").length} apps publicadas en las tiendas.
           </p>
 
           <div style={{
@@ -173,6 +173,10 @@ function ProjectsIndex() {
                 </a>
               );
             })}
+          </div>
+
+          <div id="apps" style={{ marginTop: 120, scrollMarginTop: 120 }}>
+            <GGApps showScreens />
           </div>
         </div>
       </main>
