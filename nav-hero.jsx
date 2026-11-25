@@ -21,8 +21,8 @@ window.GGNav = function GGNav({ variant }) {
     ["Servicios", "#servicios"],
     ["IA", "#ia"],
     ["Proceso", "#proceso"],
-    ["Trabajo", "#portafolio"],
-    ["FAQ", "#faq"],
+    ["Portafolio", "#portafolio"],
+    ["Nosotros", "/nosotros"],
   ];
 
   return (
@@ -45,7 +45,7 @@ window.GGNav = function GGNav({ variant }) {
         }}>
           {/* Logo */}
           <a href="#top" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", position: "relative", zIndex: 102 }}>
-            <img src="assets/glamourgeek-isotipo.png" alt="GlamourGeek" style={{ height: 32, width: "auto" }} />
+            <img src="/assets/glamourgeek-isotipo-96.webp" alt="GlamourGeek" width="75" height="96" style={{ height: 32, width: "auto" }} />
             <span className="font-display" style={{ fontSize: 17, fontWeight: 700, letterSpacing: "-0.02em", display: "flex", gap: 4 }}>
               <span style={{ color: "var(--brand-cyan-bright)" }}>Glamour</span>
               <span style={{ color: "var(--brand-coral-bright)" }}>Geek</span>
@@ -231,7 +231,7 @@ window.GGHero = function GGHero({ variant }) {
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 32 }}>
           <span className="pill">
             <span className="dot"></span>
-            Servicios 2025 · Disponible para nuevos proyectos
+            Agencia digital en Cancún, México · Disponible para nuevos proyectos
           </span>
         </div>
 
@@ -258,7 +258,7 @@ window.GGHero = function GGHero({ variant }) {
             color: "var(--fg-1)",
           }}
         >
-          Somos la agencia que une estrategia de marca con desarrollo serio.
+          Somos la agencia de marketing digital y desarrollo de software que une estrategia de marca con desarrollo serio.
           Apps, e-commerce, SEO, contenido — todo bajo un solo techo.
         </p>
 
@@ -332,7 +332,7 @@ window.GGHeroEditorial = function GGHeroEditorial() {
       <div className="container" style={{ position: "relative", zIndex: 2, width: "100%" }}>
         <div style={{ marginBottom: 40 }}>
           <span className="pill">
-            <span className="dot"></span> Servicios 2025
+            <span className="dot"></span> Agencia digital · Cancún, México
           </span>
         </div>
         <h1 style={{
@@ -413,7 +413,7 @@ window.GGHeroBento = function GGHeroBento() {
           }}>
             <span className="pill" style={{ alignSelf: "flex-start", color: "#07080C", borderColor: "rgba(0,0,0,0.2)", background: "rgba(255,255,255,0.2)" }}>
               <span className="dot" style={{ background: "#07080C", boxShadow: "none" }}></span>
-              GlamourGeek · 2025
+              GlamourGeek · Cancún, México
             </span>
             <h1 style={{ fontSize: "clamp(44px, 6vw, 80px)", lineHeight: 0.95, color: "#07080C" }}>
               Marketing digital + código que vende.

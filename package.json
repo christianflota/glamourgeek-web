@@ -1,0 +1,16 @@
+{
+  "name": "glamourgeek-web",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node build.mjs",
+    "preview": "npx serve dist --listen 4173 --no-clipboard",
+    "images": "sh scripts/optimize-images.sh"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}

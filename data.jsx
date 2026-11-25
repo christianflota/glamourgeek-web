@@ -129,7 +129,7 @@ window.GG_DATA = {
       bullets: ["Catálogo + carrito", "Procesadores de pago", "Auditoría e-commerce"],
       color: "cyan",
       slug: "ecommerce",
-      metaTitle: "Desarrollo de Tienda Online y E-Commerce en México | GlamourGeek",
+      metaTitle: "Tiendas en Línea y E-Commerce en México | GlamourGeek",
       metaDesc: "Creamos tiendas en línea profesionales con carrito de compras, pagos seguros y gestión de inventario. E-commerce listo para vender en México.",
       heroTagline: "Tu tienda en línea lista para vender en todo México",
       longDesc: "El e-commerce en México crece año con año. En GlamourGeek construimos plataformas de venta online robustas, seguras y fáciles de administrar que te permiten llegar a más clientes, reducir costos operativos y vender las 24 horas los 7 días de la semana.",
@@ -185,7 +185,7 @@ window.GG_DATA = {
       bullets: ["Google Ads", "Meta + Facebook Ads", "Remarketing"],
       color: "cyan",
       slug: "campanas-ppc",
-      metaTitle: "Campañas PPC Google Ads y Facebook Ads en México | GlamourGeek",
+      metaTitle: "Campañas Google Ads y Facebook Ads en México | GlamourGeek",
       metaDesc: "Agencia de Google Ads y Facebook Ads en México. Gestionamos campañas PPC con foco en ROI: búsqueda, display, shopping, remarketing y Meta Ads.",
       heroTagline: "Publicidad digital que genera ventas, no solo clics",
       longDesc: "Las campañas PPC bien gestionadas son el canal de adquisición de clientes más predecible y escalable. En GlamourGeek gestionamos tu inversión publicitaria en Google, Meta y Bing con un enfoque obsesivo en el retorno, optimizando cada peso para maximizar conversiones.",
@@ -213,7 +213,7 @@ window.GG_DATA = {
       bullets: ["Gestión y atención al cliente", "Investigación de mercado", "Informes mensuales"],
       color: "coral",
       slug: "redes-sociales",
-      metaTitle: "Manejo de Redes Sociales para Empresas en México | GlamourGeek",
+      metaTitle: "Manejo de Redes Sociales en México | GlamourGeek",
       metaDesc: "Gestión profesional de redes sociales en México. Instagram, Facebook, TikTok y LinkedIn. Contenido, comunidad y reportes mensuales para tu negocio.",
       heroTagline: "Presencia activa en redes que genera comunidad y ventas",
       longDesc: "Las redes sociales no son sobre publicar fotos bonitas — son un canal de ventas, atención al cliente y construcción de marca. En GlamourGeek gestionamos tu presencia con estrategia, contenido de calidad y análisis continuo para convertir seguidores en clientes.",
@@ -241,7 +241,7 @@ window.GG_DATA = {
       bullets: ["Fotografía profesional", "Cobertura de eventos", "Postproducción 4K"],
       color: "cyan",
       slug: "foto-video",
-      metaTitle: "Fotografía y Video Profesional para Empresas en México | GlamourGeek",
+      metaTitle: "Fotografía y Video Profesional para Empresas | GlamourGeek",
       metaDesc: "Producción de foto y video profesional en México: producto, inmobiliaria, dron, eventos y postproducción 4K. Contenido visual de alto impacto para tu marca.",
       heroTagline: "Contenido visual de alto impacto para tu marca",
       longDesc: "El contenido visual es el corazón de toda estrategia digital. En GlamourGeek producimos fotos y videos de alta calidad que comunican el valor de tu marca, producto o propiedad de forma impactante. Desde fotografía de producto hasta cobertura aérea con dron.",
@@ -280,7 +280,7 @@ window.GG_DATA = {
       desc: "Automatiza atención al cliente y procesos internos con flujos en n8n, Zapier, Make y APIs. WhatsApp, web, redes — todo conectado.",
       bullets: ["Respuesta automática a leads", "Calificación de prospectos", "Recordatorios de pago + post-venta"],
       featured: true,
-      metaTitle: "Automatización con Inteligencia Artificial para Empresas en México | GlamourGeek",
+      metaTitle: "Automatización con IA para Empresas en México | GlamourGeek",
       metaDesc: "Automatiza atención al cliente, ventas y procesos internos con IA en México. Flujos en n8n, Zapier, Make y WhatsApp. ROI medible en semanas.",
       heroTagline: "Automatiza lo repetitivo. Escala lo que importa.",
       longDesc: "La automatización con IA es el cambio operativo más rentable que puede hacer tu empresa hoy. En GlamourGeek diseñamos flujos inteligentes que conectan tus canales de comunicación, califican leads, responden clientes y mueven oportunidades por tu pipeline — sin intervención humana en cada paso.",
@@ -306,7 +306,7 @@ window.GG_DATA = {
       tagline: "IA + ventas, 24/7",
       desc: "Chatbots con GPT en WhatsApp, Instagram y web. Flujos de venta, cotización, reserva y seguimiento integrados con tu CRM (Kommo, HubSpot).",
       bullets: ["Reduce tiempos de respuesta", "Incrementa conversiones", "Atiende sin descanso"],
-      metaTitle: "Chatbots con Inteligencia Artificial para WhatsApp e Instagram | GlamourGeek",
+      metaTitle: "Chatbots con IA para WhatsApp e Instagram | GlamourGeek",
       metaDesc: "Desarrollamos chatbots con GPT para WhatsApp, Instagram y web en México. Atención 24/7, flujos de venta, cotización y reserva integrados con tu CRM.",
       heroTagline: "Tu vendedor más disciplinado trabaja las 24 horas",
       longDesc: "Un chatbot inteligente no es un menú de opciones — es un agente de ventas que entiende el lenguaje natural, responde en segundos y guía al cliente hasta la conversión. En GlamourGeek construimos chatbots con GPT entrenados con el contexto de tu negocio, integrados con tus canales y tu CRM.",
@@ -332,7 +332,7 @@ window.GG_DATA = {
       tagline: "Pipelines que se mueven solos",
       desc: "IA dentro de tu CRM. Clasifica leads, prioriza cierres, genera respuestas inteligentes y resúmenes de conversaciones automáticos.",
       bullets: ['"Este lead está listo para cerrar"', "Respuestas automáticas", "Resúmenes de conversación"],
-      metaTitle: "CRM con Inteligencia Artificial para Ventas en México | GlamourGeek",
+      metaTitle: "CRM con Inteligencia Artificial para Ventas | GlamourGeek",
       metaDesc: "Implementamos IA dentro de tu CRM para clasificar leads, priorizar cierres y automatizar el seguimiento. Compatible con HubSpot, Kommo y más.",
       heroTagline: "Tu CRM que trabaja, prioriza y cierra por ti",
       longDesc: "La mayoría de los CRM son bases de datos glorificadas. Con IA integrada, tu CRM se convierte en un copiloto de ventas que clasifica oportunidades, sugiere el siguiente paso, genera respuestas y resúmenes automáticos — para que tu equipo solo se enfoque en cerrar.",
@@ -358,7 +358,7 @@ window.GG_DATA = {
       tagline: "Escala tu producción",
       desc: "Copy para redes, blogs SEO, anuncios y correos automáticos. Calidad consistente, en una fracción del tiempo.",
       bullets: ["Ahorro de tiempo", "Contenido a escala", "Voz de marca consistente"],
-      metaTitle: "Generación de Contenido con IA para Marketing Digital | GlamourGeek",
+      metaTitle: "Generación de Contenido con IA en México | GlamourGeek",
       metaDesc: "Creamos sistemas de generación de contenido con IA en México: posts para redes, blogs SEO, anuncios y emails. Producción a escala con voz de marca consistente.",
       heroTagline: "Contenido de calidad a escala, sin perder tu voz de marca",
       longDesc: "El contenido es el combustible del marketing digital, pero producirlo de forma consistente consume recursos enormes. Con IA configurada a tu marca, generamos copy para redes, artículos SEO, anuncios y emails a una fracción del costo y tiempo — sin sacrificar calidad ni identidad.",
@@ -384,8 +384,8 @@ window.GG_DATA = {
       tagline: "Roadmap a la medida",
       desc: "Diagnóstico de tu negocio, identificación de procesos automatizables y plan de implementación con KPIs claros.",
       bullets: ["Estrategia clara", "Reducción de costos operativos", "Plan por fases"],
-      metaTitle: "Consultoría de Inteligencia Artificial para Empresas en México | GlamourGeek",
-      metaDesc: "Diagnóstico y roadmap de IA para tu empresa en México. Identificamos los procesos con mayor potencial de automatización y diseñamos el plan de implementación con KPIs.",
+      metaTitle: "Consultoría de IA para Empresas en México | GlamourGeek",
+      metaDesc: "Diagnóstico y roadmap de IA para tu empresa en México. Detectamos los procesos con mayor potencial de automatización y diseñamos el plan con KPIs.",
       heroTagline: "Sabe exactamente dónde y cómo implementar IA en tu negocio",
       longDesc: "Antes de implementar IA, hay que saber dónde implementarla. En GlamourGeek hacemos un diagnóstico profundo de tu operación, identificamos los procesos con mayor retorno de inversión y diseñamos un roadmap por fases — realista, medible y alineado a tus recursos.",
       features: [
@@ -410,8 +410,8 @@ window.GG_DATA = {
       tagline: "OpenAI, Whisper, Vision",
       desc: "Sistemas personalizados sobre OpenAI, Whisper y Vision. Transcripción, análisis de imágenes, reportes generados — todo dentro de tu stack.",
       bullets: ["Transcripción automática", "Análisis de imágenes", "Reportes inteligentes"],
-      metaTitle: "Integraciones con APIs de IA: OpenAI, Whisper y Vision | GlamourGeek",
-      metaDesc: "Desarrollamos sistemas personalizados sobre OpenAI, Whisper y Vision en México. Transcripción automática, análisis de imágenes y reportes generados con IA integrados en tu plataforma.",
+      metaTitle: "Integraciones con OpenAI, Whisper y Vision | GlamourGeek",
+      metaDesc: "Sistemas a la medida sobre OpenAI, Whisper y Vision en México: transcripción automática, análisis de imágenes y reportes con IA dentro de tu plataforma.",
       heroTagline: "El poder de OpenAI integrado directamente en tu plataforma",
       longDesc: "Las APIs de IA de OpenAI, Anthropic y Google son las más poderosas del mundo — pero integrarlas correctamente requiere arquitectura, experiencia y conocimiento del stack. En GlamourGeek construimos sistemas personalizados sobre estas APIs que agregan inteligencia real a tus productos y procesos.",
       features: [
@@ -616,11 +616,223 @@ window.GG_DATA = {
 
   stats: [
     { value: "120+", label: "Proyectos entregados" },
-    { value: "11 años", label: "En el mercado" },
+    { value: `${new Date().getFullYear() - 2015} años`, label: "En el mercado" },
     { value: "94%", label: "Clientes recurrentes" },
     { value: "20×", label: "Crece tu marca" },
   ],
 };
+
+// ============================================================
+// CONTENIDO AMPLIADO POR SERVICIO
+// Para quién es, cómo lo trabajamos y preguntas adicionales.
+// Se fusiona con cada servicio de arriba por su id.
+// ============================================================
+
+const GG_SERVICE_EXTRA = {
+  marketing: {
+    idealFor: "Pensado para negocios que ya venden pero dependen del boca a boca, o que invierten en varios canales sin saber cuál es el que realmente les trae clientes.",
+    steps: [
+      { title: "Diagnóstico", desc: "Revisamos tus canales, tu competencia y tus números actuales para saber de dónde partimos y qué está frenando el crecimiento." },
+      { title: "Estrategia", desc: "Definimos audiencia, mensajes, canales y metas medibles. Todo queda en un plan que apruebas antes de ejecutar." },
+      { title: "Ejecución", desc: "Producimos el contenido, activamos campañas y automatizaciones, y mantenemos un calendario que puedes consultar cuando quieras." },
+      { title: "Medición y ajuste", desc: "Revisamos resultados contra las metas y movemos presupuesto y esfuerzo hacia lo que mejor funciona." },
+    ],
+    faq: [
+      { q: "¿Necesito tener ya redes sociales o página web?", a: "No es requisito. Si no las tienes, el plan arranca por construir esa base; si ya existen, empezamos por auditar lo que hay." },
+      { q: "¿Cómo sé si la estrategia está funcionando?", a: "Desde el inicio acordamos los indicadores que importan para tu negocio —contactos, ventas, costo por adquisición— y los ves en cada reporte mensual." },
+    ],
+  },
+  software: {
+    idealFor: "Para empresas que ya no caben en hojas de cálculo ni en herramientas genéricas y necesitan un sistema hecho a la medida de su operación.",
+    steps: [
+      { title: "Discovery", desc: "Mapeamos tus procesos, usuarios y reglas de negocio. De aquí salen el alcance, los tiempos y el presupuesto." },
+      { title: "Diseño y arquitectura", desc: "Prototipamos las pantallas clave y definimos la arquitectura técnica antes de escribir código." },
+      { title: "Desarrollo por etapas", desc: "Construimos en ciclos cortos con entregas que puedes probar, para corregir el rumbo a tiempo." },
+      { title: "Lanzamiento y soporte", desc: "Publicamos, capacitamos a tu equipo y damos continuidad con un plan de mantenimiento." },
+    ],
+    faq: [
+      { q: "¿Pueden integrarse con los sistemas que ya uso?", a: "En la mayoría de los casos sí. En el Discovery revisamos tus sistemas actuales (ERP, CRM, facturación, pagos) y definimos qué se conecta por API y qué conviene migrar." },
+      { q: "¿Qué pasa si mis necesidades cambian durante el proyecto?", a: "Es normal que pase. Al trabajar por etapas, los cambios se evalúan y se reprograman sin detener lo que ya está en marcha." },
+    ],
+  },
+  web: {
+    idealFor: "Para negocios que necesitan un sitio que cargue rápido, se vea bien en el celular y convierta visitas en contactos, no solo una tarjeta de presentación.",
+    steps: [
+      { title: "Contenido y estructura", desc: "Definimos qué páginas necesitas, qué debe decir cada una y qué acción quieres que tome el visitante." },
+      { title: "Diseño", desc: "Diseñamos primero para móvil, con tu identidad de marca, y lo revisas antes de programar." },
+      { title: "Desarrollo", desc: "Construimos el sitio cuidando velocidad, accesibilidad y SEO técnico desde el primer día." },
+      { title: "Publicación", desc: "Conectamos dominio, certificado SSL y analítica, y te enseñamos a actualizar el contenido." },
+    ],
+    faq: [
+      { q: "¿Mi página se verá bien en celulares?", a: "Sí. Diseñamos primero para móvil, porque de ahí viene la mayor parte de las visitas, y probamos en distintos tamaños de pantalla antes de publicar." },
+      { q: "¿Qué necesito tener listo para empezar?", a: "Tu logotipo, la información de tu negocio y fotos si las tienes. Si falta algo, te ayudamos a prepararlo." },
+    ],
+  },
+  seo: {
+    idealFor: "Para empresas que quieren dejar de depender solo de anuncios y construir un flujo constante de visitas desde Google y desde los asistentes de IA.",
+    steps: [
+      { title: "Auditoría", desc: "Revisamos el estado técnico del sitio, su contenido y sus enlaces, y lo comparamos con quienes hoy ocupan los primeros lugares." },
+      { title: "Plan de palabras clave", desc: "Elegimos las búsquedas con intención de compra y asignamos cada una a una página concreta del sitio." },
+      { title: "Optimización y contenido", desc: "Corregimos lo técnico, mejoramos las páginas existentes y publicamos contenido que responde lo que tu cliente pregunta." },
+      { title: "Autoridad y seguimiento", desc: "Trabajamos menciones y enlaces de calidad, y reportamos posiciones, tráfico y contactos generados." },
+    ],
+    faq: [
+      { q: "¿El SEO también sirve para aparecer en ChatGPT o en las respuestas con IA de Google?", a: "Sí, y cada vez pesa más. Estructuramos el contenido, los datos estructurados y la información de tu marca para que los asistentes de IA puedan leerla y citarla." },
+      { q: "¿Qué diferencia hay entre SEO y anuncios de Google?", a: "Los anuncios dan visibilidad inmediata mientras pagas; el SEO tarda más, pero el tráfico se mantiene sin costo por clic. Suelen rendir mejor combinados." },
+    ],
+  },
+  ecommerce: {
+    idealFor: "Para marcas que quieren vender en línea por primera vez, o que ya tienen tienda pero pierden ventas en el camino al pago.",
+    steps: [
+      { title: "Catálogo y operación", desc: "Definimos productos, variantes, envíos, formas de pago y facturación antes de elegir la plataforma." },
+      { title: "Diseño de la tienda", desc: "Diseñamos la portada, las fichas de producto y el checkout para que comprar tome los menos pasos posibles." },
+      { title: "Integraciones", desc: "Conectamos pasarelas de pago, paqueterías, inventario y analítica de ventas." },
+      { title: "Lanzamiento", desc: "Probamos compras completas de punta a punta, capacitamos a tu equipo y publicamos." },
+    ],
+    faq: [
+      { q: "¿Qué plataforma me conviene?", a: "Depende del tamaño del catálogo, de tu operación y de cuánto necesites personalizar. Lo definimos contigo en el Discovery en lugar de imponer una sola herramienta." },
+      { q: "¿Puedo conectar la tienda con mi inventario o punto de venta?", a: "En la mayoría de los casos sí, mediante integraciones o APIs. Revisamos tu sistema actual antes de cotizar para confirmarlo." },
+    ],
+  },
+  apps: {
+    idealFor: "Para negocios que necesitan estar en el teléfono de sus clientes o digitalizar el trabajo de su equipo en campo.",
+    steps: [
+      { title: "Definición del producto", desc: "Aterrizamos qué problema resuelve la app, para quién y cuáles son las funciones mínimas para lanzar." },
+      { title: "UX/UI", desc: "Diseñamos los flujos y un prototipo navegable que puedes probar antes de desarrollar." },
+      { title: "Desarrollo y pruebas", desc: "Construimos para iOS y Android y probamos en dispositivos reales." },
+      { title: "Publicación", desc: "Gestionamos el envío a App Store y Google Play y damos seguimiento a las primeras versiones." },
+    ],
+    faq: [
+      { q: "¿Nativa o multiplataforma?", a: "Depende del proyecto. Una base multiplataforma suele reducir tiempo y costo; lo nativo conviene cuando la app exige mucho del dispositivo. Te presentamos la recomendación con sus pros y contras." },
+      { q: "¿Qué necesito para publicar en las tiendas?", a: "Cuentas de desarrollador en Apple y Google a nombre de tu empresa. Te guiamos para crearlas y nos encargamos del proceso de revisión." },
+    ],
+  },
+  ppc: {
+    idealFor: "Para negocios que necesitan clientes pronto y quieren saber con precisión cuánto les cuesta conseguir cada uno.",
+    steps: [
+      { title: "Medición", desc: "Antes de invertir dejamos bien instalado el seguimiento de conversiones en tu sitio." },
+      { title: "Estructura de campañas", desc: "Definimos audiencias, palabras clave, presupuestos y el mensaje de cada anuncio." },
+      { title: "Anuncios y landing pages", desc: "Producimos los anuncios y revisamos que la página de destino esté lista para convertir." },
+      { title: "Optimización continua", desc: "Probamos variantes, pausamos lo que no rinde y movemos presupuesto a lo que sí." },
+    ],
+    faq: [
+      { q: "¿Google Ads o Meta Ads?", a: "Google capta a quien ya está buscando lo que vendes; Meta sirve para generar demanda y hacer remarketing. La mezcla depende de tu producto y del valor de cada venta." },
+      { q: "¿Qué es el remarketing?", a: "Son anuncios dirigidos a personas que ya visitaron tu sitio o interactuaron con tu marca. Suele estar entre las campañas más rentables porque le habla a gente que ya te conoce." },
+    ],
+  },
+  social: {
+    idealFor: "Para marcas que publican sin constancia o sin estrategia y quieren que sus redes generen conversaciones y ventas, no solo likes.",
+    steps: [
+      { title: "Auditoría de perfiles", desc: "Revisamos tus cuentas, tu competencia y lo que hoy sí le funciona a tu audiencia." },
+      { title: "Línea editorial", desc: "Definimos temas, formatos, tono y frecuencia para cada red." },
+      { title: "Producción y publicación", desc: "Creamos copys, diseños y video corto, y programamos el calendario para tu aprobación." },
+      { title: "Comunidad y análisis", desc: "Atendemos la conversación y medimos qué contenido genera alcance, mensajes y ventas." },
+    ],
+    faq: [
+      { q: "¿En qué redes debería estar mi negocio?", a: "En las que usa tu cliente, no en todas. Lo definimos en la auditoría inicial según tu industria, tu audiencia y el tipo de contenido que puedes sostener." },
+      { q: "¿Apruebo el contenido antes de que se publique?", a: "Sí. Te compartimos el calendario con anticipación para que revises y pidas ajustes antes de publicar." },
+    ],
+  },
+  video: {
+    idealFor: "Para marcas que necesitan imágenes y video propios para su sitio, sus redes y sus anuncios, en lugar de depender de fotos de stock.",
+    steps: [
+      { title: "Brief creativo", desc: "Definimos objetivo, estilo, locaciones y la lista de tomas que necesitas." },
+      { title: "Preproducción", desc: "Organizamos fechas, equipo, permisos y todo lo necesario para aprovechar el día de rodaje." },
+      { title: "Producción", desc: "Sesión de foto, video o dron con equipo profesional, en estudio o en locación." },
+      { title: "Postproducción", desc: "Selección, edición, color y entrega en los formatos de cada plataforma." },
+    ],
+    faq: [
+      { q: "¿En qué formatos entregan el material?", a: "En los formatos que vayas a usar: horizontal para web y YouTube, vertical para Reels y TikTok, y fotos optimizadas para sitio web e impresión si lo necesitas." },
+      { q: "¿Pueden producir contenido para anuncios?", a: "Sí. Si el material es para campañas, desde el brief planeamos versiones cortas y distintos encuadres para probar en anuncios." },
+    ],
+  },
+  automation: {
+    idealFor: "Para equipos que pierden horas copiando datos entre sistemas, respondiendo lo mismo o dando seguimiento a mano.",
+    steps: [
+      { title: "Mapa de procesos", desc: "Identificamos las tareas repetitivas y calculamos cuánto tiempo consume cada una." },
+      { title: "Diseño del flujo", desc: "Definimos qué dispara cada automatización, qué decide la IA y dónde debe intervenir una persona." },
+      { title: "Construcción e integración", desc: "Armamos los flujos y los conectamos con tus herramientas actuales." },
+      { title: "Pruebas y monitoreo", desc: "Probamos con casos reales, capacitamos a tu equipo y dejamos alertas activas." },
+    ],
+    faq: [
+      { q: "¿Qué procesos conviene automatizar primero?", a: "Los que se repiten todos los días, siguen reglas claras y consumen más horas: captura de leads, seguimientos, reportes y traspaso de datos entre sistemas." },
+      { q: "¿La automatización reemplaza a mi equipo?", a: "No es el objetivo. Le quita las tareas mecánicas para que dedique su tiempo a vender, atender y decidir." },
+    ],
+  },
+  chatbots: {
+    idealFor: "Para negocios que reciben muchos mensajes por WhatsApp o Instagram y pierden ventas por no contestar a tiempo.",
+    steps: [
+      { title: "Base de conocimiento", desc: "Reunimos tus productos, precios, políticas y preguntas frecuentes para entrenar al asistente." },
+      { title: "Diseño de conversación", desc: "Definimos el tono, los flujos y cuándo debe pasar la conversación a una persona." },
+      { title: "Integración", desc: "Lo conectamos a tus canales y, si aplica, a tu CRM o agenda." },
+      { title: "Entrenamiento continuo", desc: "Revisamos conversaciones reales y ajustamos las respuestas para mejorar el resultado." },
+    ],
+    faq: [
+      { q: "¿Qué pasa cuando el chatbot no sabe la respuesta?", a: "Lo configuramos para reconocerlo y pasar la conversación a una persona de tu equipo con el contexto completo, en lugar de inventar." },
+      { q: "¿Puede agendar citas o tomar pedidos?", a: "Sí, si lo conectamos con tu agenda, tu catálogo o tu sistema de pedidos. Lo definimos en el diseño de la conversación." },
+    ],
+  },
+  "crm-ai": {
+    idealFor: "Para equipos de ventas que tienen los prospectos repartidos entre WhatsApp, correo y hojas de cálculo, y pierden oportunidades por falta de seguimiento.",
+    steps: [
+      { title: "Diagnóstico del pipeline", desc: "Revisamos cómo entra, se califica y se cierra hoy un prospecto." },
+      { title: "Configuración", desc: "Ordenamos etapas, campos y reglas del CRM alrededor de tu proceso real." },
+      { title: "Capa de IA", desc: "Activamos calificación automática, resúmenes y sugerencias de siguiente paso." },
+      { title: "Adopción", desc: "Capacitamos al equipo y ajustamos con base en el uso de las primeras semanas." },
+    ],
+    faq: [
+      { q: "¿Qué hace exactamente la IA dentro del CRM?", a: "Clasifica prospectos según su probabilidad de compra, resume conversaciones, sugiere el siguiente paso y dispara seguimientos para que ninguno se quede sin respuesta." },
+      { q: "¿Mi equipo necesita capacitación?", a: "Sí, la capacitación es parte de la etapa de adopción. El objetivo es que el CRM les ahorre trabajo, no que les agregue pasos." },
+    ],
+  },
+  "content-ai": {
+    idealFor: "Para marcas que necesitan publicar más y con mejor ritmo sin perder su voz ni depender por completo de un equipo grande.",
+    steps: [
+      { title: "Voz de marca", desc: "Documentamos tu tono, tus temas y lo que nunca debe decirse en nombre de tu marca." },
+      { title: "Sistema de producción", desc: "Armamos plantillas y flujos para cada formato: blog, redes, correo y anuncios." },
+      { title: "Revisión editorial", desc: "Una persona edita y verifica cada pieza antes de que salga." },
+      { title: "Calendario y medición", desc: "Publicamos con calendario y ajustamos según lo que mejor funciona." },
+    ],
+    faq: [
+      { q: "¿El contenido sonará como mi marca?", a: "Sí. Trabajamos a partir de una guía de voz y de ejemplos de tu propio contenido, y cada pieza pasa por revisión editorial." },
+      { q: "¿Qué tipo de contenido pueden producir?", a: "Artículos de blog, publicaciones para redes, guiones de video corto, correos y variaciones de anuncios, entre otros." },
+    ],
+  },
+  "consulting-ai": {
+    idealFor: "Para empresas que saben que deben adoptar IA pero no tienen claro por dónde empezar ni qué vale la pena pagar.",
+    steps: [
+      { title: "Diagnóstico", desc: "Entrevistamos a las áreas clave y revisamos procesos, datos y herramientas actuales." },
+      { title: "Priorización", desc: "Ordenamos las oportunidades por impacto y facilidad de implementación." },
+      { title: "Roadmap", desc: "Entregamos un plan por etapas con herramientas, responsables e indicadores." },
+      { title: "Acompañamiento", desc: "Te acompañamos en la ejecución y ajustamos el plan con resultados reales." },
+    ],
+    faq: [
+      { q: "¿Qué recibo al terminar el diagnóstico?", a: "Un documento con los procesos donde la IA tiene más impacto, las herramientas recomendadas y un plan por etapas con sus indicadores." },
+      { q: "¿Sirve para empresas pequeñas?", a: "Sí. En empresas pequeñas el diagnóstico suele ser más rápido y las primeras automatizaciones se notan pronto, porque hay menos sistemas que conectar." },
+    ],
+  },
+  "api-ai": {
+    idealFor: "Para empresas que ya tienen una plataforma o un sistema interno y quieren sumarle funciones de IA sin rehacerlo desde cero.",
+    steps: [
+      { title: "Caso de uso", desc: "Definimos qué debe hacer la IA, con qué datos y cómo se medirá que funciona." },
+      { title: "Prototipo", desc: "Construimos una prueba con datos reales para validar calidad y costo antes de escalar." },
+      { title: "Integración", desc: "Conectamos el modelo a tu plataforma con controles de seguridad, límites y registros." },
+      { title: "Monitoreo", desc: "Medimos calidad, tiempos de respuesta y consumo, y optimizamos." },
+    ],
+    faq: [
+      { q: "¿Qué se puede construir con estas APIs?", a: "Asistentes internos que responden con tu documentación, transcripción y resumen de llamadas, extracción de datos de facturas o fotos, y reportes generados automáticamente, entre otros." },
+      { q: "¿Qué pasa si el modelo se equivoca?", a: "Diseñamos el sistema con validaciones y, en los pasos críticos, con revisión humana. También registramos las respuestas para detectar errores y corregirlos." },
+    ],
+  },
+};
+
+[...window.GG_DATA.services, ...window.GG_DATA.aiServices].forEach((s) => {
+  const extra = GG_SERVICE_EXTRA[s.id];
+  if (!extra) return;
+  s.idealFor = extra.idealFor;
+  s.steps = extra.steps;
+  s.faq = [...s.faq, ...extra.faq];
+});
 
 // ============================================================
 // ICON SET — minimal stroke icons, on-brand

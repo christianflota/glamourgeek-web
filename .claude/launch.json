@@ -7,6 +7,13 @@
       "runtimeArgs": ["serve", ".", "--listen", "3000", "--no-clipboard"],
       "port": 3000,
       "startupMessage": "Accepting connections"
+    },
+    {
+      "name": "dist",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "dist", "--listen", "4173", "--no-clipboard"],
+      "port": 4173,
+      "startupMessage": "Accepting connections"
     }
   ]
 }

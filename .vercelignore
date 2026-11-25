@@ -1,0 +1,7 @@
+# Nada de esto debe subirse ni publicarse. El sitio público sale solo de dist/.
+.claude
+CLAUDE.md
+GG-Brochure-2025.pdf
+node_modules
+dist
+assets/screenshots/capture.py

@@ -61,8 +61,9 @@ window.GGPortfolio = function GGPortfolio() {
                     ))}
                   </div>
                   <img
-                    src={`assets/screenshots/${p.id}.jpg`}
-                    alt={p.client}
+                    src={`/assets/screenshots/${p.id}-480.webp`}
+                    alt={`Captura del proyecto ${p.client}`}
+                    width="480" height="300" loading="lazy" decoding="async"
                     style={{ width: "100%", height: "calc(100% - 18px)", objectFit: "cover", objectPosition: "top", display: "block" }}
                     onError={(e) => { e.target.parentElement.style.display = "none"; }}
                   />
@@ -91,7 +92,7 @@ window.GGPortfolio = function GGPortfolio() {
           })}
         </div>
         <div style={{ display: "flex", justifyContent: "center", marginTop: 48 }}>
-          <a href="proyectos/" className="btn btn-ghost">
+          <a href="/proyectos" className="btn btn-ghost">
             Ver todos los proyectos
             <GGIcon name="arrow-up-right" size={16} stroke={2} />
           </a>
@@ -191,10 +192,48 @@ window.GGMarquee = function GGMarquee() {
 // ============================================================
 // CONTACT + FOOTER
 // ============================================================
+// Mensaje prellenado para WhatsApp: respaldo cuando EmailJS no está configurado o falla.
+function ggWhatsAppUrl(form) {
+  const cfg = window.GG_CONFIG || {};
+  const lines = [
+    "Hola GlamourGeek, quiero cotizar un proyecto.",
+    form.name && `Nombre: ${form.name}`,
+    form.email && `Email: ${form.email}`,
+    form.phone && `WhatsApp: ${form.phone}`,
+    form.services.length > 0 && `Servicios: ${form.services.join(", ")}`,
+    form.msg && `Mensaje: ${form.msg}`,
+  ].filter(Boolean);
+  return `https://wa.me/${cfg.whatsapp || "529982416655"}?text=${encodeURIComponent(lines.join("\n"))}`;
+}
+
+function ggEmailConfig() {
+  const cfg = (window.GG_CONFIG || {}).emailjs || {};
+  return cfg.publicKey && cfg.serviceId && cfg.templateId ? cfg : null;
+}
+
+// EmailJS se descarga solo cuando alguien envía el formulario.
+function ggSendEmail(cfg, form) {
+  const load = window.emailjs ? Promise.resolve() : new Promise((resolve, reject) => {
+    const el = document.createElement("script");
+    el.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+    el.onload = resolve;
+    el.onerror = () => reject(new Error("No se pudo cargar EmailJS"));
+    document.head.appendChild(el);
+  });
+  return load.then(() => window.emailjs.send(cfg.serviceId, cfg.templateId, {
+    from_name: form.name,
+    from_email: form.email,
+    whatsapp: form.phone,
+    service: form.services.length > 0 ? form.services.join(", ") : "No especificado",
+    message: form.msg,
+  }, { publicKey: cfg.publicKey }));
+}
+
 window.GGContact = function GGContact() {
   const EMPTY = { name: "", email: "", phone: "", services: [], msg: "" };
   const [form, setForm] = React.useState(EMPTY);
-  const [status, setStatus] = React.useState("idle"); // idle | sending | sent | error
+  const [status, setStatus] = React.useState("idle"); // idle | sending | sent | whatsapp | error
+  const [waUrl, setWaUrl] = React.useState("");
 
   const ALL_SERVICES = [
     "Marketing Digital", "Desarrollo Web", "Desarrollo de Software",
@@ -292,18 +331,20 @@ window.GGContact = function GGContact() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              const track = (method) => window.ggTrack && window.ggTrack("generate_lead", { method });
+              const url = ggWhatsAppUrl(form);
+              setWaUrl(url);
+              const cfg = ggEmailConfig();
+              if (!cfg) {
+                // Sin EmailJS configurado el mensaje sale por WhatsApp para no perder el contacto.
+                window.open(url, "_blank", "noopener");
+                track("whatsapp");
+                setStatus("whatsapp");
+                return;
+              }
               setStatus("sending");
-              window.emailjs.send(
-                "SERVICE_ID",
-                "TEMPLATE_ID",
-                {
-                  from_name: form.name,
-                  from_email: form.email,
-                  whatsapp: form.phone,
-                  service: form.services.length > 0 ? form.services.join(", ") : "No especificado",
-                  message: form.msg,
-                }
-              ).then(() => {
+              ggSendEmail(cfg, form).then(() => {
+                track("form");
                 setStatus("sent");
                 setForm(EMPTY);
               }).catch(() => {
@@ -318,9 +359,9 @@ window.GGContact = function GGContact() {
               display: "flex", flexDirection: "column", gap: 18,
             }}
           >
-            <Field label="Nombre" value={form.name} onChange={(v) => setForm({ ...form, name: v })} placeholder="Tu nombre" />
-            <Field label="Email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} placeholder="hola@empresa.mx" />
-            <Field label="WhatsApp" type="tel" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} placeholder="+52 998 241 6655" />
+            <Field label="Nombre" name="name" autoComplete="name" required value={form.name} onChange={(v) => setForm({ ...form, name: v })} placeholder="Tu nombre" />
+            <Field label="Email" name="email" autoComplete="email" required type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} placeholder="hola@empresa.mx" />
+            <Field label="WhatsApp" name="phone" autoComplete="tel" type="tel" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} placeholder="+52 998 241 6655" />
             <div>
               <label className="caption" style={{ display: "block", marginBottom: 8 }}>
                 Servicios de interés <span style={{ color: "var(--fg-3)", fontWeight: 400 }}>(puedes elegir varios)</span>
@@ -343,8 +384,8 @@ window.GGContact = function GGContact() {
               </div>
             </div>
             <div>
-              <label className="caption" style={{ display: "block", marginBottom: 8 }}>Mensaje</label>
-              <textarea value={form.msg} onChange={(e) => setForm({ ...form, msg: e.target.value })}
+              <label htmlFor="gg-field-msg" className="caption" style={{ display: "block", marginBottom: 8 }}>Mensaje</label>
+              <textarea id="gg-field-msg" name="message" value={form.msg} onChange={(e) => setForm({ ...form, msg: e.target.value })}
                 rows={4} placeholder="Cuéntanos sobre tu proyecto…"
                 style={{
                   width: "100%", padding: "14px 16px",
@@ -362,13 +403,19 @@ window.GGContact = function GGContact() {
               {status === "idle" && <>Enviar cotización <GGIcon name="arrow-right" size={16} stroke={2} /></>}
               {status === "sending" && "Enviando…"}
               {status === "sent" && "✓ Enviado, te contactamos pronto"}
-              {status === "error" && "Error al enviar. Intenta de nuevo."}
+              {status === "whatsapp" && "Enviar de nuevo por WhatsApp"}
+              {status === "error" && "No se pudo enviar. Intenta de nuevo."}
             </button>
+            {status === "whatsapp" && (
+              <p className="caption" role="status" style={{ textAlign: "center", lineHeight: 1.6 }}>
+                Abrimos WhatsApp con tu mensaje listo: solo falta que lo envíes.{" "}
+                <a href={waUrl} target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)" }}>¿No se abrió? Ábrelo aquí.</a>
+              </p>
+            )}
             {status === "error" && (
-              <button type="button" className="btn btn-ghost" style={{ justifyContent: "center", fontSize: 13 }}
-                onClick={() => setStatus("idle")}>
-                Reintentar
-              </button>
+              <a className="btn btn-ghost" href={waUrl} target="_blank" rel="noopener noreferrer" style={{ justifyContent: "center", fontSize: 13 }}>
+                Enviar por WhatsApp
+              </a>
             )}
           </form>
         </div>
@@ -380,11 +427,13 @@ window.GGContact = function GGContact() {
   );
 };
 
-function Field({ label, type = "text", value, onChange, placeholder }) {
+function Field({ label, type = "text", value, onChange, placeholder, name, autoComplete, required }) {
+  const id = `gg-field-${name}`;
   return (
     <div>
-      <label className="caption" style={{ display: "block", marginBottom: 8 }}>{label}</label>
-      <input type={type} value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder}
+      <label htmlFor={id} className="caption" style={{ display: "block", marginBottom: 8 }}>{label}</label>
+      <input id={id} name={name} autoComplete={autoComplete} required={required}
+        type={type} value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder}
         style={{
           width: "100%", padding: "14px 16px",
           background: "var(--bg-2)", color: "var(--fg-0)",
@@ -412,7 +461,7 @@ window.GGFooter = function GGFooter() {
         <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40, marginBottom: 60 }} className="footer-grid">
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-              <img src="assets/glamourgeek-isotipo.png" alt="GG" style={{ height: 36 }} />
+              <img src="/assets/glamourgeek-isotipo-96.webp" alt="GlamourGeek" width="75" height="96" style={{ height: 36, width: "auto" }} />
               <span className="font-display" style={{ fontSize: 18, fontWeight: 700 }}>
                 <span style={{ color: "var(--brand-cyan-bright)" }}>Glamour</span>
                 <span style={{ color: "var(--brand-coral-bright)" }}>Geek</span>
