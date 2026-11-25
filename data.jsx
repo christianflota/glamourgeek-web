@@ -587,6 +587,47 @@ window.GG_DATA = {
     },
   ],
 
+  // Apps móviles publicadas en las tiendas. Los iconos y capturas salen de la
+  // ficha pública de App Store: `python3 scripts/fetch-app-assets.py`.
+  apps: [
+    {
+      id: "soem-pg",
+      name: "SOEM PG",
+      category: "Seguridad en eventos",
+      desc: "Evaluación y gestión de seguridad para eventos masivos: checklist de 35 criterios, puntaje ponderado y reportes para equipos de seguridad y sus clientes.",
+      appStore: "https://apps.apple.com/mx/app/soem-pg/id6762004834",
+      googlePlay: "https://play.google.com/store/apps/details?id=com.soempg.app",
+      project: "soem",
+    },
+    {
+      id: "travel-design-app",
+      name: "Travel Design by Ana Rivera",
+      category: "Viajes",
+      desc: "App oficial de la agencia de viajes: hoteles, vuelos, tours, day pass, traslados y cruceros para descubrir y reservar desde el celular.",
+      appStore: "https://apps.apple.com/mx/app/travel-design-by-ana-rivera/id6761188502",
+      googlePlay: null,
+      project: "travel-design",
+    },
+    {
+      id: "ofase",
+      name: "Ofase App",
+      category: "Deportes",
+      desc: "Administración de ligas de fútbol americano en México: registro de jugadores, equipos, árbitros y documentación, desde el celular y la computadora.",
+      appStore: "https://apps.apple.com/mx/app/ofase-app/id6741083864",
+      googlePlay: "https://play.google.com/store/apps/details?id=com.dcitdev.oneappfootball.one_app_football",
+      project: null,
+    },
+    {
+      id: "lmt",
+      name: "Liga Mexicana de Tocho",
+      category: "Deportes",
+      desc: "App oficial de la liga de tocho bandera: inscripción a torneos, calendario, sedes y partidos en vivo para jugadores, familias y coaches.",
+      appStore: "https://apps.apple.com/mx/app/liga-mexicana-de-tocho/id6742457451",
+      googlePlay: "https://play.google.com/store/apps/details?id=com.dcitdev.lmt.lmt",
+      project: null,
+    },
+  ],
+
   faqs: [
     {
       q: "¿Cuánto tarda un proyecto típico?",
@@ -1005,4 +1046,72 @@ window.GGIcon = function GGIcon({ name, size = 24, stroke = 1.6 }) {
     default:
       return null;
   }
+};
+
+// ============================================================
+// APPS MÓVILES — bloque compartido por la home y /proyectos
+// ============================================================
+
+window.GGApps = function GGApps({ showScreens = false }) {
+  const apps = window.GG_DATA.apps;
+  const storeLink = {
+    display: "inline-flex", alignItems: "center", gap: 6, minHeight: 36,
+    padding: "8px 14px", borderRadius: 999, border: "1px solid var(--line-strong)",
+    color: "var(--fg-0)", fontSize: 13, textDecoration: "none",
+  };
+  return (
+    <div className="gg-apps">
+      <span className="eyebrow">/ Apps publicadas</span>
+      <h3 style={{ marginTop: 16, fontSize: "clamp(28px, 3.4vw, 44px)", maxWidth: 760 }}>
+        {apps.length} apps nuestras en App Store y Google Play.
+      </h3>
+      <div className="gg-apps-grid" style={{ marginTop: 40, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
+        {apps.map((app) => (
+          <article key={app.id} style={{
+            background: "var(--bg-1)", border: "1px solid var(--line)", borderRadius: "var(--r-lg)",
+            padding: 24, display: "flex", flexDirection: "column", gap: 16,
+          }}>
+            {showScreens && (
+              <img
+                src={`/assets/apps/${app.id}-1.webp`}
+                alt={`Pantalla de la app ${app.name}`}
+                width="420" height="909" loading="lazy" decoding="async"
+                style={{
+                  width: "100%", height: "auto", aspectRatio: "420 / 600", objectFit: "cover", objectPosition: "top",
+                  borderRadius: 14, border: "1px solid var(--line)", display: "block",
+                }}
+              />
+            )}
+            <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+              <img
+                src={`/assets/apps/${app.id}-icon.webp`}
+                alt={`Icono de ${app.name}`}
+                width="192" height="192" loading="lazy" decoding="async"
+                style={{ width: 56, height: 56, borderRadius: 13, flexShrink: 0 }}
+              />
+              <div>
+                <h4 style={{ fontSize: 17, lineHeight: 1.2, fontFamily: "var(--font-display)" }}>{app.name}</h4>
+                <span className="caption">{app.category} · {app.googlePlay ? "iOS y Android" : "iOS"}</span>
+              </div>
+            </div>
+            <p className="body-sm" style={{ color: "var(--fg-1)", flexGrow: 1 }}>{app.desc}</p>
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+              <a href={app.appStore} target="_blank" rel="noopener noreferrer" style={storeLink}>
+                App Store <GGIcon name="arrow-up-right" size={14} stroke={2} />
+              </a>
+              {app.googlePlay && (
+                <a href={app.googlePlay} target="_blank" rel="noopener noreferrer" style={storeLink}>
+                  Google Play <GGIcon name="arrow-up-right" size={14} stroke={2} />
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+      <style>{`
+        @media (max-width: 1100px) { .gg-apps-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+        @media (max-width: 620px) { .gg-apps-grid { grid-template-columns: 1fr !important; } }
+      `}</style>
+    </div>
+  );
 };

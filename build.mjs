@@ -272,7 +272,7 @@ function headFor(route, data) {
     const n = data.portfolio.length;
     return {
       title: "Portafolio de Proyectos y Casos de Éxito | GlamourGeek",
-      description: `${n} casos de éxito en marketplaces, SaaS, apps móviles y sitios corporativos. Conoce el trabajo de GlamourGeek, agencia digital en México.`,
+      description: `${n} casos de éxito y ${data.apps.length} apps en App Store y Google Play: marketplaces, SaaS y sitios corporativos de GlamourGeek, agencia digital en México.`,
       ogType: "website", ogImage: ogDefault,
       jsonld: graph(
         {
@@ -287,6 +287,19 @@ function headFor(route, data) {
             itemListElement: data.portfolio.map((p, i) => ({ "@type": "ListItem", position: i + 1, name: p.client, url: `${BASE}/proyectos/${p.id}` })),
           },
         },
+        ...data.apps.map((app) => ({
+          "@type": "MobileApplication",
+          "@id": `${url}#app-${app.id}`,
+          name: app.name,
+          description: app.desc,
+          applicationCategory: app.category,
+          operatingSystem: app.googlePlay ? "iOS, Android" : "iOS",
+          image: `${BASE}/assets/apps/${app.id}-icon.webp`,
+          installUrl: app.appStore,
+          sameAs: [app.appStore, app.googlePlay].filter(Boolean),
+          offers: { "@type": "Offer", price: "0", priceCurrency: "MXN" },
+          creator: orgRef,
+        })),
         breadcrumb([["Inicio", "/"], ["Portafolio", "/proyectos"]]),
       ),
     };
@@ -470,6 +483,9 @@ async function main() {
     "",
     "## Casos de éxito",
     ...data.portfolio.map((p) => line(p.client, `/proyectos/${p.id}`, `${p.tag}. ${p.desc}`)),
+    "",
+    "## Apps móviles publicadas",
+    ...data.apps.map((a) => `- [${a.name}](${a.appStore}): ${a.category}. ${a.desc}${a.googlePlay ? ` También en Google Play: ${a.googlePlay}` : ""}`),
     "",
     "## Empresa",
     line("Nosotros", "/nosotros", "Historia, valores y forma de trabajo de la agencia."),

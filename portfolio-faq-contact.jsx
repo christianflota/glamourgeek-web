@@ -1,4 +1,4 @@
-/* global React, GGIcon */
+/* global React, GGIcon, GGApps */
 
 window.GGPortfolio = function GGPortfolio() {
   const items = window.GG_DATA.portfolio.slice(0, 6);
@@ -96,6 +96,9 @@ window.GGPortfolio = function GGPortfolio() {
             Ver todos los proyectos
             <GGIcon name="arrow-up-right" size={16} stroke={2} />
           </a>
+        </div>
+        <div style={{ marginTop: 96 }}>
+          <GGApps />
         </div>
       </div>
       <style>{`
