@@ -270,9 +270,10 @@ function headFor(route, data) {
 
   if (kind === "proyectos") {
     const n = data.portfolio.length;
+    const published = data.apps.filter((app) => app.status !== "desarrollo");
     return {
       title: "Portafolio de Proyectos y Casos de Éxito | GlamourGeek",
-      description: `${n} casos de éxito y ${data.apps.length} apps en App Store y Google Play: marketplaces, SaaS y sitios corporativos de GlamourGeek, agencia digital en México.`,
+      description: `${n} casos de éxito y ${published.length} apps en App Store y Google Play: marketplaces, SaaS y sitios corporativos de GlamourGeek, agencia digital en México.`,
       ogType: "website", ogImage: ogDefault,
       jsonld: graph(
         {
@@ -287,7 +288,7 @@ function headFor(route, data) {
             itemListElement: data.portfolio.map((p, i) => ({ "@type": "ListItem", position: i + 1, name: p.client, url: `${BASE}/proyectos/${p.id}` })),
           },
         },
-        ...data.apps.map((app) => ({
+        ...published.map((app) => ({
           "@type": "MobileApplication",
           "@id": `${url}#app-${app.id}`,
           name: app.name,
@@ -485,7 +486,10 @@ async function main() {
     ...data.portfolio.map((p) => line(p.client, `/proyectos/${p.id}`, `${p.tag}. ${p.desc}`)),
     "",
     "## Apps móviles publicadas",
-    ...data.apps.map((a) => `- [${a.name}](${a.appStore}): ${a.category}. ${a.desc}${a.googlePlay ? ` También en Google Play: ${a.googlePlay}` : ""}`),
+    ...data.apps.filter((a) => a.status !== "desarrollo").map((a) => `- [${a.name}](${a.appStore}): ${a.category}. ${a.desc}${a.googlePlay ? ` También en Google Play: ${a.googlePlay}` : ""}`),
+    "",
+    "## Apps móviles en desarrollo",
+    ...data.apps.filter((a) => a.status === "desarrollo").map((a) => `- ${a.name}: ${a.category}. ${a.desc}`),
     "",
     "## Empresa",
     line("Nosotros", "/nosotros", "Historia, valores y forma de trabajo de la agencia."),

@@ -626,6 +626,38 @@ window.GG_DATA = {
       googlePlay: "https://play.google.com/store/apps/details?id=com.dcitdev.lmt.lmt",
       project: null,
     },
+    // En desarrollo: todavía no están en las tiendas, así que no llevan enlaces.
+    // Sus iconos se copiaron a mano desde cada proyecto.
+    {
+      id: "superpass",
+      name: "Superpass",
+      category: "Turismo",
+      desc: "App para reservar day pass en hoteles y beach clubs: explora, paga y recibe tu voucher en el celular, con un modo aparte para agencias.",
+      status: "desarrollo",
+      appStore: null,
+      googlePlay: null,
+      project: "daypass",
+    },
+    {
+      id: "agenciashub",
+      name: "AgenciasHub",
+      category: "CRM para agencias",
+      desc: "App operativa del CRM para agencias de viajes: la operación del día a día de la agencia, desde el celular.",
+      status: "desarrollo",
+      appStore: null,
+      googlePlay: null,
+      project: "agenciashub",
+    },
+    {
+      id: "tubarber",
+      name: "TuBarber Pro",
+      category: "Belleza",
+      desc: "App de TuBarber Pro para reservar citas y administrar la barbería desde el celular.",
+      status: "desarrollo",
+      appStore: null,
+      googlePlay: null,
+      project: "tubarber",
+    },
   ],
 
   faqs: [
@@ -1054,16 +1086,23 @@ window.GGIcon = function GGIcon({ name, size = 24, stroke = 1.6 }) {
 
 window.GGApps = function GGApps({ showScreens = false }) {
   const apps = window.GG_DATA.apps;
+  const published = apps.filter((app) => app.status !== "desarrollo");
+  const inDevelopment = apps.filter((app) => app.status === "desarrollo");
   const storeLink = {
     display: "inline-flex", alignItems: "center", gap: 6, minHeight: 36,
     padding: "8px 14px", borderRadius: 999, border: "1px solid var(--line-strong)",
     color: "var(--fg-0)", fontSize: 13, textDecoration: "none",
   };
+  const platforms = (app) => {
+    if (app.status === "desarrollo") return "En desarrollo";
+    return app.googlePlay ? "iOS y Android" : "iOS";
+  };
   return (
     <div className="gg-apps">
       <span className="eyebrow">/ Apps publicadas</span>
       <h3 style={{ marginTop: 16, fontSize: "clamp(28px, 3.4vw, 44px)", maxWidth: 760 }}>
-        {apps.length} apps nuestras en App Store y Google Play.
+        {published.length} apps nuestras en App Store y Google Play
+        {inDevelopment.length > 0 && ` y ${inDevelopment.length} más en desarrollo`}.
       </h3>
       <div className="gg-apps-grid" style={{ marginTop: 40, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
         {apps.map((app) => (
@@ -1071,7 +1110,18 @@ window.GGApps = function GGApps({ showScreens = false }) {
             background: "var(--bg-1)", border: "1px solid var(--line)", borderRadius: "var(--r-lg)",
             padding: 24, display: "flex", flexDirection: "column", gap: 16,
           }}>
-            {showScreens && (
+            {showScreens && app.status === "desarrollo" && (
+              <div aria-hidden="true" style={{
+                aspectRatio: "420 / 600", borderRadius: 14, border: "1px dashed var(--line-strong)",
+                background: "radial-gradient(circle at 50% 35%, var(--accent-glow-soft), transparent 65%), var(--bg-2)",
+                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 18,
+              }}>
+                <img src={`/assets/apps/${app.id}-icon.webp`} alt="" width="192" height="192" loading="lazy" decoding="async"
+                  style={{ width: 96, height: 96, borderRadius: 22 }} />
+                <span className="pill">En desarrollo</span>
+              </div>
+            )}
+            {showScreens && app.status !== "desarrollo" && (
               <img
                 src={`/assets/apps/${app.id}-1.webp`}
                 alt={`Pantalla de la app ${app.name}`}
@@ -1091,17 +1141,24 @@ window.GGApps = function GGApps({ showScreens = false }) {
               />
               <div>
                 <h4 style={{ fontSize: 17, lineHeight: 1.2, fontFamily: "var(--font-display)" }}>{app.name}</h4>
-                <span className="caption">{app.category} · {app.googlePlay ? "iOS y Android" : "iOS"}</span>
+                <span className="caption">{app.category} · {platforms(app)}</span>
               </div>
             </div>
             <p className="body-sm" style={{ color: "var(--fg-1)", flexGrow: 1 }}>{app.desc}</p>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <a href={app.appStore} target="_blank" rel="noopener noreferrer" style={storeLink}>
-                App Store <GGIcon name="arrow-up-right" size={14} stroke={2} />
-              </a>
+              {app.appStore && (
+                <a href={app.appStore} target="_blank" rel="noopener noreferrer" style={storeLink}>
+                  App Store <GGIcon name="arrow-up-right" size={14} stroke={2} />
+                </a>
+              )}
               {app.googlePlay && (
                 <a href={app.googlePlay} target="_blank" rel="noopener noreferrer" style={storeLink}>
                   Google Play <GGIcon name="arrow-up-right" size={14} stroke={2} />
+                </a>
+              )}
+              {app.status === "desarrollo" && app.project && (
+                <a href={`/proyectos/${app.project}`} style={storeLink}>
+                  Ver el proyecto <GGIcon name="arrow-right" size={14} stroke={2} />
                 </a>
               )}
             </div>
